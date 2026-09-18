@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "as_of": "2026-09-18",
   "provider": {
     "id": "aws",
@@ -57,11 +57,13 @@
   "totals": {
     "regions": {
       "value": 39,
-      "src": "aws-global-infra"
+      "src": "aws-global-infra",
+      "note": "AWS's own stated headline figure."
     },
     "availability_zones": {
       "value": 124,
-      "src": "aws-global-infra"
+      "src": "aws-global-infra",
+      "note": "AWS publishes exact per-region AZ counts, so this total is a count."
     },
     "announced_regions": {
       "value": 2,
@@ -84,7 +86,6 @@
       "launched": 2006,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": false,
       "status": "operational",
       "capacity_mw": null,
       "grid": {
@@ -95,7 +96,12 @@
       },
       "coords_precision": "campus",
       "coords_note": "Loudoun County campus cluster (Ashburn / Sterling)",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "general",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "us-east-2",
@@ -112,7 +118,6 @@
       "launched": 2016,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": false,
       "status": "operational",
       "capacity_mw": null,
       "grid": {
@@ -122,7 +127,12 @@
         "src": "grid-headroom-map"
       },
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "general",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "us-west-1",
@@ -139,7 +149,6 @@
       "launched": 2009,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": false,
       "status": "operational",
       "capacity_mw": null,
       "grid": {
@@ -150,7 +159,12 @@
       },
       "notes": "Newer AWS accounts are granted only 2 of the 3 AZs.",
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "general",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "us-west-2",
@@ -167,7 +181,6 @@
       "launched": 2011,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": false,
       "status": "operational",
       "capacity_mw": null,
       "grid": {
@@ -178,7 +191,12 @@
       },
       "coords_precision": "campus",
       "coords_note": "Morrow / Umatilla County campus cluster (Boardman)",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "general",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "af-south-1",
@@ -195,11 +213,15 @@
       "launched": 2020,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "ap-east-1",
@@ -216,11 +238,15 @@
       "launched": 2019,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "ap-east-2",
@@ -237,11 +263,15 @@
       "launched": 2025,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "ap-south-1",
@@ -258,11 +288,15 @@
       "launched": 2016,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": false,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "general",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "ap-south-2",
@@ -279,11 +313,15 @@
       "launched": 2022,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "ap-northeast-1",
@@ -300,11 +338,15 @@
       "launched": 2011,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": false,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "general",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "ap-northeast-2",
@@ -321,11 +363,15 @@
       "launched": 2016,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": false,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "general",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "ap-northeast-3",
@@ -342,11 +388,15 @@
       "launched": 2018,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": false,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "general",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "ap-southeast-1",
@@ -363,11 +413,15 @@
       "launched": 2010,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": false,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "general",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "ap-southeast-2",
@@ -384,11 +438,15 @@
       "launched": 2012,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": false,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "general",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "ap-southeast-3",
@@ -405,11 +463,15 @@
       "launched": 2021,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "ap-southeast-4",
@@ -426,11 +488,15 @@
       "launched": 2023,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "ap-southeast-5",
@@ -447,11 +513,15 @@
       "launched": 2024,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "ap-southeast-6",
@@ -468,11 +538,15 @@
       "launched": 2026,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "ap-southeast-7",
@@ -489,11 +563,15 @@
       "launched": 2025,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "ca-central-1",
@@ -510,11 +588,15 @@
       "launched": 2016,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": false,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "general",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "ca-west-1",
@@ -531,11 +613,15 @@
       "launched": 2023,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "eu-central-1",
@@ -552,11 +638,15 @@
       "launched": 2014,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": false,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "general",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "eu-central-2",
@@ -573,11 +663,15 @@
       "launched": 2022,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "eu-west-1",
@@ -594,11 +688,15 @@
       "launched": 2007,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": false,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "general",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "eu-west-2",
@@ -615,11 +713,15 @@
       "launched": 2016,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": false,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "general",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "eu-west-3",
@@ -636,11 +738,15 @@
       "launched": 2017,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": false,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "general",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "eu-south-1",
@@ -657,11 +763,15 @@
       "launched": 2020,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "eu-south-2",
@@ -678,12 +788,16 @@
       "launched": 2022,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "campus",
       "coords_note": "Aragon campus cluster",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "eu-north-1",
@@ -700,11 +814,15 @@
       "launched": 2018,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": false,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "general",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "il-central-1",
@@ -721,11 +839,15 @@
       "launched": 2023,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "mx-central-1",
@@ -742,11 +864,15 @@
       "launched": 2025,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "me-south-1",
@@ -763,11 +889,15 @@
       "launched": 2019,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "me-central-1",
@@ -784,11 +914,15 @@
       "launched": 2022,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "sa-east-1",
@@ -805,11 +939,15 @@
       "launched": 2011,
       "launched_src": "kb-unverified",
       "partition": "commercial",
-      "opt_in": false,
       "status": "operational",
       "capacity_mw": null,
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "exact",
+      "access": "general",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "us-gov-west-1",
@@ -826,12 +964,16 @@
       "launched": 2011,
       "launched_src": "kb-unverified",
       "partition": "govcloud",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "notes": "Separate partition. Requires an AWS GovCloud (US) account.",
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "estimated",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "us-gov-east-1",
@@ -848,12 +990,16 @@
       "launched": 2018,
       "launched_src": "kb-unverified",
       "partition": "govcloud",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "notes": "Separate partition. Requires an AWS GovCloud (US) account.",
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "estimated",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "cn-north-1",
@@ -870,12 +1016,16 @@
       "launched": 2014,
       "launched_src": "kb-unverified",
       "partition": "china",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "notes": "Operated by Sinnet. Separate partition and separate account required.",
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "estimated",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "cn-northwest-1",
@@ -892,12 +1042,16 @@
       "launched": 2017,
       "launched_src": "kb-unverified",
       "partition": "china",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "notes": "Operated by NWCD. Separate partition and separate account required.",
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "estimated",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     },
     {
       "id": "eusc-de-east-1",
@@ -914,12 +1068,16 @@
       "launched": 2026,
       "launched_src": "kb-unverified",
       "partition": "sovereign",
-      "opt_in": true,
       "status": "operational",
       "capacity_mw": null,
       "notes": "Independent EU-operated partition. Verify launch date and AZ count.",
       "coords_precision": "metro-centroid",
-      "coords_src": "kb-unverified"
+      "coords_src": "kb-unverified",
+      "azs_basis": "estimated",
+      "access": "opt-in",
+      "access_src": "aws-regions-doc",
+      "paired_with": null,
+      "paired_with_raw": null
     }
   ],
   "pipeline": [

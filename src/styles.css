@@ -142,6 +142,8 @@ main { max-width: 1320px; margin: 0 auto; padding: 24px; }
 .node-precision.is-metro-centroid { stroke-opacity: .42; stroke-width: 1; stroke-dasharray: 1.5 3; }
 .node-precision.is-campus { stroke-opacity: .6; stroke-width: 1; stroke-dasharray: 5 2.5; }
 .node-cross { stroke: currentColor; stroke-opacity: .75; stroke-width: 1; }
+/* Regions with no availability zones read as hollow, so zone coverage is visible at a glance. */
+.node-dot.is-hollow { fill: #0E1626; stroke: currentColor; stroke-width: 1.8; }
 .node.is-dim { opacity: .18; }
 .node.is-sel .node-dot { stroke: #fff; stroke-width: 2; }
 .node-label {
@@ -198,6 +200,8 @@ main { max-width: 1320px; margin: 0 auto; padding: 24px; }
 .field-src a { color: var(--accent); text-decoration: none; }
 .field-src a:hover { text-decoration: underline; }
 .detail-note { margin-top: 14px; font-size: .82rem; color: var(--text-secondary); background: var(--surface-2); border-radius: var(--radius-sm); padding: 10px 12px; }
+.detail-prov { font-weight: 700; font-size: .9rem; }
+.field-hint { font-size: .7rem; color: var(--text-muted); margin-top: 4px; line-height: 1.4; }
 
 /* ── Chips ── */
 .chip {
@@ -240,6 +244,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .recon { margin-top: 16px; padding: 12px 14px; border-radius: var(--radius-sm); font-size: .82rem; display: flex; gap: 10px; align-items: flex-start; }
 .recon.ok { background: rgba(16,185,129,.09); color: #065F46; }
 .recon.warn { background: rgba(245,158,11,.11); color: #92400E; }
+.recon.info { background: rgba(59,130,246,.09); color: #1E40AF; }
 .recon-icon { font-weight: 700; flex: none; }
 
 /* ── Sources ── */

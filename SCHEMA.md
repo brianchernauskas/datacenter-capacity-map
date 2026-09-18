@@ -1,4 +1,4 @@
-# Data schema — v1.0
+# Data schema — v1.2
 
 One JSON file per provider, in `data/<provider>.json`. The map reads them all and merges.
 This file is the contract. **Fill the fields; do not invent fields, and do not change field names.**
@@ -53,12 +53,17 @@ a record to make the arithmetic work — the gap is the finding.
 | `coords_precision` | enum | `facility`, `campus`, `metro-centroid` |
 | `coords_src` | source id | |
 | `coords_note` | string | Optional. What the coordinate actually refers to. |
-| `azs` | int | Availability zones / equivalent. |
+| `azs` | int | Availability zones / equivalent. `0` if the region has none. |
+| `azs_basis` | enum | `exact`, `minimum`, `none`, `preview` — see below. **Required.** |
 | `azs_src` | source id | |
-| `launched` | int | Year general availability began. |
-| `launched_src` | source id | |
-| `partition` | enum | `commercial`, `govcloud`, `china`, `sovereign` |
-| `opt_in` | bool | Requires explicit enablement. |
+| `launched` | int \| null | Year GA began. `null` where the provider does not publish it. |
+| `launched_src` | source id \| null | |
+| `partition` | enum | `commercial`, `govcloud`, `government`, `china`, `sovereign` |
+| `access` | enum | `general`, `opt-in`, `restricted` |
+| `access_src` | source id | |
+| `paired_with` | string \| null | Programmatic id of the paired region, resolved. |
+| `paired_with_raw` | string \| null | The pair exactly as the provider printed it. |
+| `paired_src` | source id \| null | |
 | `status` | enum | `operational` |
 | `capacity_mw` | object \| null | See below. `null` until a citable source exists. |
 | `grid` | object \| null | `{ market, constraint_index, leverage, src }` — join to the Grid-Headroom Map. US only for now. |
@@ -68,6 +73,39 @@ a record to make the arithmetic work — the gap is the finding.
 
 Same shape, minus the operational fields, plus `azs_planned`, `target` (date or null),
 `investment_usd` (number or null), `src`.
+
+## `azs_basis` — providers do not count the same way
+
+This is the field that keeps the map honest across providers, and it exists because
+Azure broke the v1.0 assumption that "AZs" means the same thing everywhere.
+
+| Value | Means | Who |
+|---|---|---|
+| `exact` | Provider publishes the count for this specific region | AWS |
+| `minimum` | Provider publishes only *that* zones exist, plus a documented floor | Azure (min 3) |
+| `none` | Region has no zones | 24 Azure regions |
+| `preview` | Zone support announced but not GA | Azure North Central US |
+
+**Never sum across mixed bases and call the result a count.** AWS publishes exact
+per-region counts, so an AWS AZ total is a count. Microsoft publishes zone support as a
+yes/no plus a documented minimum of three, so an Azure AZ total is a *floor*. The page
+renders any total containing a `minimum` as `≥ N` and says why. If you add a provider
+that publishes neither, use `none` and leave the count at zero rather than guessing.
+
+## `totals` — do not build a check that cannot fail
+
+`totals` holds the provider's **own published headline**, kept apart from the sum of the
+records so the two can be compared. Some providers publish no such headline — Microsoft
+does not state a single region count anywhere. In that case set `self_counted: true`:
+
+```jsonc
+"regions": { "value": 66, "src": "azure-regions-list", "self_counted": true,
+             "note": "Counted from the Microsoft region tables, not a Microsoft headline claim." }
+```
+
+The page then reports it as a transcription rather than a reconciliation. Comparing a
+number against itself always passes, and a check that always passes implies a
+verification that never happened. That is worse than no check at all.
 
 ## `coords_precision` — say how well you actually know where it is
 
