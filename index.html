@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5E1D26WRG"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-N5E1D26WRG');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Data Center Capacity Map</title>
+  <link rel="stylesheet" href="src/styles.css?v=20260918a" />
+</head>
+<body>
+<script>(function(){
+  // Proxima gate — bypassed on localhost so the tool can be developed and verified locally.
+  var local = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) || location.protocol === 'file:';
+  var H='e1af9770edb5a9358db28d25520d54b0e5aeb7bdaa6fed238cebea143d1560bb';
+  if(!local && localStorage.getItem('proxima-auth')!==H) window.location.replace('https://brianchernauskas.github.io/proxima-tools-hub/');
+})()</script>
+
+<div id="app">
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="logo">
+        <svg width="84" height="22" viewBox="0 0 84 22" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="18" font-family="Georgia, 'Times New Roman', serif" font-size="18" font-weight="700" fill="#ffffff" letter-spacing="-0.3">Proxima</text></svg>
+        <span class="logo-divider"></span>
+        <span>Data Center Capacity Map</span>
+      </div>
+      <div class="header-taglines">
+        <div class="header-tagline">Where the capacity is, where it is going, and what that means at the table</div>
+        <div class="header-tagline">Intended for Proxima use only, please contact Brian Chernauskas with questions</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="stats" id="stats"></div>
+
+    <div class="controls">
+      <div class="ctrl-group">
+        <span class="ctrl-label">View</span>
+        <div class="seg" id="seg-geo"></div>
+      </div>
+      <div class="ctrl-group">
+        <span class="ctrl-label">Colour by</span>
+        <div class="seg" id="seg-color"></div>
+      </div>
+    </div>
+
+    <div class="map-wrap">
+      <svg id="map" role="img" aria-label="World map of provider regions"></svg>
+      <div class="map-caption" id="map-caption"></div>
+      <div class="map-legend" id="legend"></div>
+    </div>
+
+    <div class="detail is-empty" id="detail">Select a region on the map or in the table to inspect its record and provenance.</div>
+
+    <div class="section-head">
+      <h2>Region register</h2>
+      <span class="sub" id="table-count"></span>
+    </div>
+    <div class="table-wrap">
+      <div class="table-scroll">
+        <table id="table">
+          <thead><tr id="thead-row"></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="dq" id="dq"></div>
+
+    <div class="section-head"><h2>Sources</h2></div>
+    <div class="sources" id="sources"></div>
+  </main>
+
+  <footer id="footer"></footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script src="src/app.js?v=20260918a"></script>
+</body>
+</html>

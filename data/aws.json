@@ -1,0 +1,965 @@
+{
+  "schema_version": "1.1",
+  "as_of": "2026-09-18",
+  "provider": {
+    "id": "aws",
+    "name": "Amazon Web Services",
+    "short": "AWS",
+    "type": "hyperscaler",
+    "color": "#FF9900",
+    "parent": "Amazon.com, Inc.",
+    "ticker": "AMZN"
+  },
+  "sources": {
+    "aws-regions-doc": {
+      "title": "AWS Regions and Availability Zones — AWS Documentation",
+      "url": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+      "accessed": "2026-09-18",
+      "tier": "A",
+      "note": "Authoritative. Region codes, friendly names, per-region AZ counts, opt-in status."
+    },
+    "aws-global-infra": {
+      "title": "AWS Global Infrastructure — Regions & AZs",
+      "url": "https://aws.amazon.com/about-aws/global-infrastructure/regions_az/",
+      "accessed": "2026-09-18",
+      "tier": "A",
+      "note": "Headline totals (39 Regions / 124 AZs) and announced future regions."
+    },
+    "grid-headroom-map": {
+      "title": "Proxima Grid-Headroom Map (internal)",
+      "url": "https://brianchernauskas.github.io/grid-headroom-map/",
+      "accessed": "2026-08-01",
+      "tier": "B",
+      "note": "Expert-judgment constraint index, 1-5, anchored to cited queue and capacity figures."
+    },
+    "kb-unverified": {
+      "title": "Model knowledge — NOT VERIFIED",
+      "url": null,
+      "accessed": "2026-09-18",
+      "tier": "C",
+      "note": "Placeholder provenance. Every field carrying this source id must be replaced with a cited value before publication."
+    },
+    "gcp-locations": {
+      "title": "Google Cloud data centre locations (official addresses)",
+      "url": "https://www.google.com/about/datacenters/locations/",
+      "accessed": "2026-09-18",
+      "tier": "A",
+      "note": "Google publishes facility addresses. Use for facility-precision coords when the GCP file is built."
+    },
+    "meta-datacenters": {
+      "title": "Meta data centre locations (official addresses)",
+      "url": "https://datacenters.atmeta.com/",
+      "accessed": "2026-09-18",
+      "tier": "A",
+      "note": "Meta publishes facility addresses. Use for facility-precision coords when the Meta file is built."
+    }
+  },
+  "totals": {
+    "regions": {
+      "value": 39,
+      "src": "aws-global-infra"
+    },
+    "availability_zones": {
+      "value": 124,
+      "src": "aws-global-infra"
+    },
+    "announced_regions": {
+      "value": 2,
+      "src": "aws-global-infra"
+    }
+  },
+  "regions": [
+    {
+      "id": "us-east-1",
+      "name": "US East (N. Virginia)",
+      "metro": "Ashburn / Northern Virginia",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -77.49,
+        39.04
+      ],
+      "azs": 6,
+      "azs_src": "aws-regions-doc",
+      "launched": 2006,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": false,
+      "status": "operational",
+      "capacity_mw": null,
+      "grid": {
+        "market": "PJM — Dominion / N. Virginia",
+        "constraint_index": 4.65,
+        "leverage": "High",
+        "src": "grid-headroom-map"
+      },
+      "coords_precision": "campus",
+      "coords_note": "Loudoun County campus cluster (Ashburn / Sterling)",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "us-east-2",
+      "name": "US East (Ohio)",
+      "metro": "Columbus, OH",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -82.99,
+        39.96
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2016,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": false,
+      "status": "operational",
+      "capacity_mw": null,
+      "grid": {
+        "market": "PJM — rest of footprint",
+        "constraint_index": 3.35,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      },
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "us-west-1",
+      "name": "US West (N. California)",
+      "metro": "San Jose / Bay Area",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -121.89,
+        37.34
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2009,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": false,
+      "status": "operational",
+      "capacity_mw": null,
+      "grid": {
+        "market": "CAISO — California",
+        "constraint_index": 3.15,
+        "leverage": "Some",
+        "src": "grid-headroom-map"
+      },
+      "notes": "Newer AWS accounts are granted only 2 of the 3 AZs.",
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "us-west-2",
+      "name": "US West (Oregon)",
+      "metro": "Boardman / Umatilla County, OR",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -119.7,
+        45.84
+      ],
+      "azs": 4,
+      "azs_src": "aws-regions-doc",
+      "launched": 2011,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": false,
+      "status": "operational",
+      "capacity_mw": null,
+      "grid": {
+        "market": "Non-ISO West (ex-AZ)",
+        "constraint_index": 2.3,
+        "leverage": "Low",
+        "src": "grid-headroom-map"
+      },
+      "coords_precision": "campus",
+      "coords_note": "Morrow / Umatilla County campus cluster (Boardman)",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "af-south-1",
+      "name": "Africa (Cape Town)",
+      "metro": "Cape Town",
+      "country": "South Africa",
+      "geo": "Africa",
+      "coords": [
+        18.42,
+        -33.92
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2020,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "ap-east-1",
+      "name": "Asia Pacific (Hong Kong)",
+      "metro": "Hong Kong",
+      "country": "Hong Kong SAR",
+      "geo": "Asia Pacific",
+      "coords": [
+        114.17,
+        22.32
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2019,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "ap-east-2",
+      "name": "Asia Pacific (Taipei)",
+      "metro": "Taipei",
+      "country": "Taiwan",
+      "geo": "Asia Pacific",
+      "coords": [
+        121.56,
+        25.03
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2025,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "ap-south-1",
+      "name": "Asia Pacific (Mumbai)",
+      "metro": "Mumbai",
+      "country": "India",
+      "geo": "Asia Pacific",
+      "coords": [
+        72.88,
+        19.08
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2016,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": false,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "ap-south-2",
+      "name": "Asia Pacific (Hyderabad)",
+      "metro": "Hyderabad",
+      "country": "India",
+      "geo": "Asia Pacific",
+      "coords": [
+        78.49,
+        17.39
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2022,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "ap-northeast-1",
+      "name": "Asia Pacific (Tokyo)",
+      "metro": "Tokyo",
+      "country": "Japan",
+      "geo": "Asia Pacific",
+      "coords": [
+        139.69,
+        35.69
+      ],
+      "azs": 4,
+      "azs_src": "aws-regions-doc",
+      "launched": 2011,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": false,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "ap-northeast-2",
+      "name": "Asia Pacific (Seoul)",
+      "metro": "Seoul",
+      "country": "South Korea",
+      "geo": "Asia Pacific",
+      "coords": [
+        126.98,
+        37.57
+      ],
+      "azs": 4,
+      "azs_src": "aws-regions-doc",
+      "launched": 2016,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": false,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "ap-northeast-3",
+      "name": "Asia Pacific (Osaka)",
+      "metro": "Osaka",
+      "country": "Japan",
+      "geo": "Asia Pacific",
+      "coords": [
+        135.5,
+        34.69
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2018,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": false,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "ap-southeast-1",
+      "name": "Asia Pacific (Singapore)",
+      "metro": "Singapore",
+      "country": "Singapore",
+      "geo": "Asia Pacific",
+      "coords": [
+        103.82,
+        1.35
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2010,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": false,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "ap-southeast-2",
+      "name": "Asia Pacific (Sydney)",
+      "metro": "Sydney",
+      "country": "Australia",
+      "geo": "Asia Pacific",
+      "coords": [
+        151.21,
+        -33.87
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2012,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": false,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "ap-southeast-3",
+      "name": "Asia Pacific (Jakarta)",
+      "metro": "Jakarta",
+      "country": "Indonesia",
+      "geo": "Asia Pacific",
+      "coords": [
+        106.85,
+        -6.21
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2021,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "ap-southeast-4",
+      "name": "Asia Pacific (Melbourne)",
+      "metro": "Melbourne",
+      "country": "Australia",
+      "geo": "Asia Pacific",
+      "coords": [
+        144.96,
+        -37.81
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2023,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "ap-southeast-5",
+      "name": "Asia Pacific (Malaysia)",
+      "metro": "Kuala Lumpur",
+      "country": "Malaysia",
+      "geo": "Asia Pacific",
+      "coords": [
+        101.69,
+        3.14
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2024,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "ap-southeast-6",
+      "name": "Asia Pacific (New Zealand)",
+      "metro": "Auckland",
+      "country": "New Zealand",
+      "geo": "Asia Pacific",
+      "coords": [
+        174.76,
+        -36.85
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2026,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "ap-southeast-7",
+      "name": "Asia Pacific (Thailand)",
+      "metro": "Bangkok",
+      "country": "Thailand",
+      "geo": "Asia Pacific",
+      "coords": [
+        100.5,
+        13.76
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2025,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "ca-central-1",
+      "name": "Canada (Central)",
+      "metro": "Montreal",
+      "country": "Canada",
+      "geo": "North America",
+      "coords": [
+        -73.57,
+        45.5
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2016,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": false,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "ca-west-1",
+      "name": "Canada West (Calgary)",
+      "metro": "Calgary",
+      "country": "Canada",
+      "geo": "North America",
+      "coords": [
+        -114.07,
+        51.05
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2023,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "eu-central-1",
+      "name": "Europe (Frankfurt)",
+      "metro": "Frankfurt",
+      "country": "Germany",
+      "geo": "Europe",
+      "coords": [
+        8.68,
+        50.11
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2014,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": false,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "eu-central-2",
+      "name": "Europe (Zurich)",
+      "metro": "Zurich",
+      "country": "Switzerland",
+      "geo": "Europe",
+      "coords": [
+        8.54,
+        47.38
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2022,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "eu-west-1",
+      "name": "Europe (Ireland)",
+      "metro": "Dublin",
+      "country": "Ireland",
+      "geo": "Europe",
+      "coords": [
+        -6.26,
+        53.35
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2007,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": false,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "eu-west-2",
+      "name": "Europe (London)",
+      "metro": "London",
+      "country": "United Kingdom",
+      "geo": "Europe",
+      "coords": [
+        -0.13,
+        51.51
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2016,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": false,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "eu-west-3",
+      "name": "Europe (Paris)",
+      "metro": "Paris",
+      "country": "France",
+      "geo": "Europe",
+      "coords": [
+        2.35,
+        48.86
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2017,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": false,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "eu-south-1",
+      "name": "Europe (Milan)",
+      "metro": "Milan",
+      "country": "Italy",
+      "geo": "Europe",
+      "coords": [
+        9.19,
+        45.46
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2020,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "eu-south-2",
+      "name": "Europe (Spain)",
+      "metro": "Aragón / Zaragoza",
+      "country": "Spain",
+      "geo": "Europe",
+      "coords": [
+        -0.89,
+        41.65
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2022,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "campus",
+      "coords_note": "Aragon campus cluster",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "eu-north-1",
+      "name": "Europe (Stockholm)",
+      "metro": "Stockholm",
+      "country": "Sweden",
+      "geo": "Europe",
+      "coords": [
+        18.07,
+        59.33
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2018,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": false,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "il-central-1",
+      "name": "Israel (Tel Aviv)",
+      "metro": "Tel Aviv",
+      "country": "Israel",
+      "geo": "Middle East",
+      "coords": [
+        34.78,
+        32.08
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2023,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "mx-central-1",
+      "name": "Mexico (Central)",
+      "metro": "Querétaro",
+      "country": "Mexico",
+      "geo": "North America",
+      "coords": [
+        -100.39,
+        20.59
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2025,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "me-south-1",
+      "name": "Middle East (Bahrain)",
+      "metro": "Bahrain",
+      "country": "Bahrain",
+      "geo": "Middle East",
+      "coords": [
+        50.59,
+        26.07
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2019,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "me-central-1",
+      "name": "Middle East (UAE)",
+      "metro": "Dubai",
+      "country": "United Arab Emirates",
+      "geo": "Middle East",
+      "coords": [
+        55.27,
+        25.2
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2022,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "sa-east-1",
+      "name": "South America (São Paulo)",
+      "metro": "São Paulo",
+      "country": "Brazil",
+      "geo": "South America",
+      "coords": [
+        -46.63,
+        -23.55
+      ],
+      "azs": 3,
+      "azs_src": "aws-regions-doc",
+      "launched": 2011,
+      "launched_src": "kb-unverified",
+      "partition": "commercial",
+      "opt_in": false,
+      "status": "operational",
+      "capacity_mw": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "us-gov-west-1",
+      "name": "AWS GovCloud (US-West)",
+      "metro": "Oregon",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -119.2,
+        45.4
+      ],
+      "azs": 3,
+      "azs_src": "kb-unverified",
+      "launched": 2011,
+      "launched_src": "kb-unverified",
+      "partition": "govcloud",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "notes": "Separate partition. Requires an AWS GovCloud (US) account.",
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "us-gov-east-1",
+      "name": "AWS GovCloud (US-East)",
+      "metro": "Ohio",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -82.5,
+        39.5
+      ],
+      "azs": 3,
+      "azs_src": "kb-unverified",
+      "launched": 2018,
+      "launched_src": "kb-unverified",
+      "partition": "govcloud",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "notes": "Separate partition. Requires an AWS GovCloud (US) account.",
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "cn-north-1",
+      "name": "China (Beijing)",
+      "metro": "Beijing",
+      "country": "China",
+      "geo": "Asia Pacific",
+      "coords": [
+        116.41,
+        39.9
+      ],
+      "azs": 3,
+      "azs_src": "kb-unverified",
+      "launched": 2014,
+      "launched_src": "kb-unverified",
+      "partition": "china",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "notes": "Operated by Sinnet. Separate partition and separate account required.",
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "cn-northwest-1",
+      "name": "China (Ningxia)",
+      "metro": "Yinchuan / Ningxia",
+      "country": "China",
+      "geo": "Asia Pacific",
+      "coords": [
+        106.23,
+        38.49
+      ],
+      "azs": 3,
+      "azs_src": "kb-unverified",
+      "launched": 2017,
+      "launched_src": "kb-unverified",
+      "partition": "china",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "notes": "Operated by NWCD. Separate partition and separate account required.",
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "eusc-de-east-1",
+      "name": "AWS European Sovereign Cloud (Brandenburg)",
+      "metro": "Brandenburg",
+      "country": "Germany",
+      "geo": "Europe",
+      "coords": [
+        13.4,
+        52.4
+      ],
+      "azs": 3,
+      "azs_src": "kb-unverified",
+      "launched": 2026,
+      "launched_src": "kb-unverified",
+      "partition": "sovereign",
+      "opt_in": true,
+      "status": "operational",
+      "capacity_mw": null,
+      "notes": "Independent EU-operated partition. Verify launch date and AZ count.",
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    }
+  ],
+  "pipeline": [
+    {
+      "id": "aws-sa",
+      "name": "Kingdom of Saudi Arabia",
+      "country": "Saudi Arabia",
+      "geo": "Middle East",
+      "coords": [
+        46.72,
+        24.69
+      ],
+      "azs_planned": 3,
+      "status": "announced",
+      "target": null,
+      "src": "aws-global-infra",
+      "investment_usd": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    },
+    {
+      "id": "aws-cl",
+      "name": "Chile",
+      "country": "Chile",
+      "geo": "South America",
+      "coords": [
+        -70.67,
+        -33.45
+      ],
+      "azs_planned": 3,
+      "status": "announced",
+      "target": null,
+      "src": "aws-global-infra",
+      "investment_usd": null,
+      "coords_precision": "metro-centroid",
+      "coords_src": "kb-unverified"
+    }
+  ],
+  "capex": {
+    "note": "UNPOPULATED. Fill from AMZN 10-Q/10-K and earnings call transcripts. Amazon does not break out AWS-only capex, so record total purchases of property and equipment plus the AWS share stated by management.",
+    "series": []
+  }
+}
