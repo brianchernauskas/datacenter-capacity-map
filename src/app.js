@@ -234,8 +234,16 @@ function renderMap() {
     projection = d3.geoNaturalEarth1().fitExtent([[12, 18], [W - 12, H - 18]], { type: 'Sphere' });
   } else {
     const pts = { type: 'MultiPoint', coordinates: regions.concat(pipeline).map(r => r.coords) };
+    const MAX_SCALE = 900;
     projection = d3.geoMercator().fitExtent([[70, 60], [W - 70, H - 60]], pts);
-    projection.scale(Math.min(projection.scale(), 900));
+    // Cap the zoom so a geography with two clustered regions does not fill the frame.
+    // fitExtent sets scale AND a matching translate, so capping the scale alone leaves
+    // the projection inconsistent and throws every point off-canvas — recentre explicitly.
+    if (projection.scale() > MAX_SCALE) {
+      projection.scale(MAX_SCALE)
+                .center(d3.geoCentroid(pts))
+                .translate([W / 2, H / 2]);
+    }
   }
   const path = d3.geoPath(projection);
 
