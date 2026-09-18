@@ -1,4 +1,8 @@
 {
   "note": "Load order for the map. Add a provider by dropping its file in data/ and naming it here.",
-  "providers": ["aws", "azure"]
+  "providers": [
+    "aws",
+    "azure",
+    "gcp"
+  ]
 }

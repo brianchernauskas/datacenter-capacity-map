@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.2",
+  "schema_version": "1.3",
   "as_of": "2026-09-18",
   "provider": {
     "id": "aws",
@@ -101,7 +101,9 @@
       "access": "general",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "us-east-2",
@@ -132,7 +134,9 @@
       "access": "general",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "us-west-1",
@@ -164,7 +168,9 @@
       "access": "general",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "us-west-2",
@@ -196,7 +202,9 @@
       "access": "general",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "af-south-1",
@@ -221,7 +229,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "ap-east-1",
@@ -246,7 +256,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "ap-east-2",
@@ -271,7 +283,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "ap-south-1",
@@ -296,7 +310,9 @@
       "access": "general",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "ap-south-2",
@@ -321,7 +337,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "ap-northeast-1",
@@ -346,7 +364,9 @@
       "access": "general",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "ap-northeast-2",
@@ -371,7 +391,9 @@
       "access": "general",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "ap-northeast-3",
@@ -396,7 +418,9 @@
       "access": "general",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "ap-southeast-1",
@@ -421,7 +445,9 @@
       "access": "general",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "ap-southeast-2",
@@ -446,7 +472,9 @@
       "access": "general",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "ap-southeast-3",
@@ -471,7 +499,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "ap-southeast-4",
@@ -496,7 +526,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "ap-southeast-5",
@@ -521,7 +553,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "ap-southeast-6",
@@ -546,7 +580,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "ap-southeast-7",
@@ -571,7 +607,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "ca-central-1",
@@ -596,7 +634,9 @@
       "access": "general",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "ca-west-1",
@@ -621,7 +661,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "eu-central-1",
@@ -646,7 +688,9 @@
       "access": "general",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "eu-central-2",
@@ -671,7 +715,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "eu-west-1",
@@ -696,7 +742,9 @@
       "access": "general",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "eu-west-2",
@@ -721,7 +769,9 @@
       "access": "general",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "eu-west-3",
@@ -746,7 +796,9 @@
       "access": "general",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "eu-south-1",
@@ -771,7 +823,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "eu-south-2",
@@ -797,7 +851,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "eu-north-1",
@@ -822,7 +878,9 @@
       "access": "general",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "il-central-1",
@@ -847,7 +905,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "mx-central-1",
@@ -872,7 +932,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "me-south-1",
@@ -897,7 +959,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "me-central-1",
@@ -922,7 +986,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "sa-east-1",
@@ -947,7 +1013,9 @@
       "access": "general",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "us-gov-west-1",
@@ -973,7 +1041,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "us-gov-east-1",
@@ -999,7 +1069,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "cn-north-1",
@@ -1025,7 +1097,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "cn-northwest-1",
@@ -1051,7 +1125,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "eusc-de-east-1",
@@ -1077,7 +1153,9 @@
       "access": "opt-in",
       "access_src": "aws-regions-doc",
       "paired_with": null,
-      "paired_with_raw": null
+      "paired_with_raw": null,
+      "low_co2": "not published",
+      "low_co2_src": null
     }
   ],
   "pipeline": [

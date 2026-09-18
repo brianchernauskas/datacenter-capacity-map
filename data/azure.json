@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.2",
+  "schema_version": "1.3",
   "as_of": "2026-09-18",
   "provider": {
     "id": "azure",
@@ -92,7 +92,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Australia Central 2",
       "paired_with": "australiacentral2",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "australiacentral2",
@@ -118,7 +120,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Australia Central",
       "paired_with": "australiacentral",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "australiaeast",
@@ -144,7 +148,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Australia Southeast",
       "paired_with": "australiasoutheast",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "australiasoutheast",
@@ -170,7 +176,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Australia East",
       "paired_with": "australiaeast",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "austriaeast",
@@ -196,7 +204,9 @@
       "capacity_mw": null,
       "paired_with_raw": null,
       "paired_with": null,
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "belgiumcentral",
@@ -222,7 +232,9 @@
       "capacity_mw": null,
       "paired_with_raw": null,
       "paired_with": null,
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "brazilsouth",
@@ -248,7 +260,9 @@
       "capacity_mw": null,
       "paired_with_raw": "South Central US",
       "paired_with": "southcentralus",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "brazilsoutheast",
@@ -274,7 +288,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Brazil South",
       "paired_with": "brazilsouth",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "canadacentral",
@@ -300,7 +316,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Canada East",
       "paired_with": "canadaeast",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "canadaeast",
@@ -326,7 +344,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Canada Central",
       "paired_with": "canadacentral",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "centralindia",
@@ -352,7 +372,9 @@
       "capacity_mw": null,
       "paired_with_raw": "South India",
       "paired_with": "southindia",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "centralus",
@@ -384,7 +406,9 @@
         "constraint_index": 3.35,
         "leverage": "Moderate",
         "src": "grid-headroom-map"
-      }
+      },
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "chilecentral",
@@ -410,7 +434,9 @@
       "capacity_mw": null,
       "paired_with_raw": null,
       "paired_with": null,
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "denmarkeast",
@@ -436,7 +462,9 @@
       "capacity_mw": null,
       "paired_with_raw": null,
       "paired_with": null,
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "eastasia",
@@ -462,7 +490,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Southeast Asia",
       "paired_with": "southeastasia",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "eastus",
@@ -494,7 +524,9 @@
         "constraint_index": 4.65,
         "leverage": "High",
         "src": "grid-headroom-map"
-      }
+      },
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "eastus2",
@@ -526,7 +558,9 @@
         "constraint_index": 4.65,
         "leverage": "High",
         "src": "grid-headroom-map"
-      }
+      },
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "francecentral",
@@ -552,7 +586,9 @@
       "capacity_mw": null,
       "paired_with_raw": "France South",
       "paired_with": "francesouth",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "francesouth",
@@ -578,7 +614,9 @@
       "capacity_mw": null,
       "paired_with_raw": "France Central",
       "paired_with": "francecentral",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "germanynorth",
@@ -604,7 +642,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Germany West Central",
       "paired_with": "germanywestcentral",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "germanywestcentral",
@@ -630,7 +670,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Germany North",
       "paired_with": "germanynorth",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "indiasouthcentral",
@@ -656,7 +698,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Central India",
       "paired_with": "centralindia",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "indonesiacentral",
@@ -682,7 +726,9 @@
       "capacity_mw": null,
       "paired_with_raw": null,
       "paired_with": null,
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "israelcentral",
@@ -708,7 +754,9 @@
       "capacity_mw": null,
       "paired_with_raw": null,
       "paired_with": null,
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "italynorth",
@@ -734,7 +782,9 @@
       "capacity_mw": null,
       "paired_with_raw": null,
       "paired_with": null,
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "japaneast",
@@ -760,7 +810,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Japan West",
       "paired_with": "japanwest",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "japanwest",
@@ -786,7 +838,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Japan East",
       "paired_with": "japaneast",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "koreacentral",
@@ -812,7 +866,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Korea South",
       "paired_with": "koreasouth",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "koreasouth",
@@ -838,7 +894,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Korea Central",
       "paired_with": "koreacentral",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "malaysiawest",
@@ -864,7 +922,9 @@
       "capacity_mw": null,
       "paired_with_raw": null,
       "paired_with": null,
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "mexicocentral",
@@ -890,7 +950,9 @@
       "capacity_mw": null,
       "paired_with_raw": null,
       "paired_with": null,
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "newzealandnorth",
@@ -916,7 +978,9 @@
       "capacity_mw": null,
       "paired_with_raw": null,
       "paired_with": null,
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "northcentralus",
@@ -948,7 +1012,9 @@
         "constraint_index": 3.35,
         "leverage": "Moderate",
         "src": "grid-headroom-map"
-      }
+      },
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "northeurope",
@@ -974,7 +1040,9 @@
       "capacity_mw": null,
       "paired_with_raw": "West Europe",
       "paired_with": "westeurope",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "norwayeast",
@@ -1000,7 +1068,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Norway West",
       "paired_with": "norwaywest",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "norwaywest",
@@ -1026,7 +1096,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Norway East",
       "paired_with": "norwayeast",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "polandcentral",
@@ -1052,7 +1124,9 @@
       "capacity_mw": null,
       "paired_with_raw": null,
       "paired_with": null,
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "qatarcentral",
@@ -1078,7 +1152,9 @@
       "capacity_mw": null,
       "paired_with_raw": null,
       "paired_with": null,
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "southafricanorth",
@@ -1104,7 +1180,9 @@
       "capacity_mw": null,
       "paired_with_raw": "South Africa West",
       "paired_with": "southafricawest",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "southafricawest",
@@ -1130,7 +1208,9 @@
       "capacity_mw": null,
       "paired_with_raw": "South Africa North",
       "paired_with": "southafricanorth",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "southcentralus",
@@ -1162,7 +1242,9 @@
         "constraint_index": 3.9,
         "leverage": "Moderate",
         "src": "grid-headroom-map"
-      }
+      },
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "southindia",
@@ -1188,7 +1270,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Central India",
       "paired_with": "centralindia",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "southeastasia",
@@ -1214,7 +1298,9 @@
       "capacity_mw": null,
       "paired_with_raw": "East Asia",
       "paired_with": "eastasia",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "spaincentral",
@@ -1240,7 +1326,9 @@
       "capacity_mw": null,
       "paired_with_raw": null,
       "paired_with": null,
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "swedencentral",
@@ -1266,7 +1354,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Sweden South",
       "paired_with": null,
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "switzerlandnorth",
@@ -1292,7 +1382,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Switzerland West",
       "paired_with": "switzerlandwest",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "switzerlandwest",
@@ -1318,7 +1410,9 @@
       "capacity_mw": null,
       "paired_with_raw": "Switzerland North",
       "paired_with": "switzerlandnorth",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "uaecentral",
@@ -1344,7 +1438,9 @@
       "capacity_mw": null,
       "paired_with_raw": "UAE North",
       "paired_with": "uaenorth",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "uaenorth",
@@ -1370,7 +1466,9 @@
       "capacity_mw": null,
       "paired_with_raw": "UAE Central",
       "paired_with": "uaecentral",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "uksouth",
@@ -1396,7 +1494,9 @@
       "capacity_mw": null,
       "paired_with_raw": "UK West",
       "paired_with": "ukwest",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "ukwest",
@@ -1422,7 +1522,9 @@
       "capacity_mw": null,
       "paired_with_raw": "UK South",
       "paired_with": "uksouth",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "westcentralus",
@@ -1454,7 +1556,9 @@
         "constraint_index": 2.3,
         "leverage": "Low",
         "src": "grid-headroom-map"
-      }
+      },
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "westeurope",
@@ -1480,7 +1584,9 @@
       "capacity_mw": null,
       "paired_with_raw": "North Europe",
       "paired_with": "northeurope",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "westindia",
@@ -1506,7 +1612,9 @@
       "capacity_mw": null,
       "paired_with_raw": "South India",
       "paired_with": "southindia",
-      "paired_src": "azure-regions-list"
+      "paired_src": "azure-regions-list",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "westus",
@@ -1538,7 +1646,9 @@
         "constraint_index": 3.15,
         "leverage": "Some",
         "src": "grid-headroom-map"
-      }
+      },
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "westus2",
@@ -1570,7 +1680,9 @@
         "constraint_index": 2.3,
         "leverage": "Low",
         "src": "grid-headroom-map"
-      }
+      },
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "westus3",
@@ -1602,7 +1714,9 @@
         "constraint_index": 4.1,
         "leverage": "High",
         "src": "grid-headroom-map"
-      }
+      },
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "usgovarizona",
@@ -1634,7 +1748,9 @@
         "constraint_index": 4.1,
         "leverage": "High",
         "src": "grid-headroom-map"
-      }
+      },
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "usgovtexas",
@@ -1666,7 +1782,9 @@
         "constraint_index": 3.9,
         "leverage": "Moderate",
         "src": "grid-headroom-map"
-      }
+      },
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "usgovvirginia",
@@ -1698,7 +1816,9 @@
         "constraint_index": 4.65,
         "leverage": "High",
         "src": "grid-headroom-map"
-      }
+      },
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "chinaeast",
@@ -1725,7 +1845,9 @@
       "paired_with_raw": "China North",
       "paired_with": "chinanorth",
       "paired_src": "azure-china-regions",
-      "notes": "Microsoft does not publish a physical location for this region; coordinates are an unverified placement."
+      "notes": "Microsoft does not publish a physical location for this region; coordinates are an unverified placement.",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "chinaeast2",
@@ -1752,7 +1874,9 @@
       "paired_with_raw": "China North 2",
       "paired_with": "chinanorth2",
       "paired_src": "azure-china-regions",
-      "notes": "Microsoft does not publish a physical location for this region; coordinates are an unverified placement."
+      "notes": "Microsoft does not publish a physical location for this region; coordinates are an unverified placement.",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "chinaeast3",
@@ -1779,7 +1903,9 @@
       "paired_with_raw": "China North 3",
       "paired_with": "chinanorth3",
       "paired_src": "azure-china-regions",
-      "notes": "Microsoft does not publish a physical location for this region; coordinates are an unverified placement."
+      "notes": "Microsoft does not publish a physical location for this region; coordinates are an unverified placement.",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "chinanorth",
@@ -1806,7 +1932,9 @@
       "paired_with_raw": "China East",
       "paired_with": "chinaeast",
       "paired_src": "azure-china-regions",
-      "notes": "Microsoft does not publish a physical location for this region; coordinates are an unverified placement."
+      "notes": "Microsoft does not publish a physical location for this region; coordinates are an unverified placement.",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "chinanorth2",
@@ -1833,7 +1961,9 @@
       "paired_with_raw": "China East 2",
       "paired_with": "chinaeast2",
       "paired_src": "azure-china-regions",
-      "notes": "Microsoft does not publish a physical location for this region; coordinates are an unverified placement."
+      "notes": "Microsoft does not publish a physical location for this region; coordinates are an unverified placement.",
+      "low_co2": "not published",
+      "low_co2_src": null
     },
     {
       "id": "chinanorth3",
@@ -1860,7 +1990,9 @@
       "paired_with_raw": "China East 3",
       "paired_with": "chinaeast3",
       "paired_src": "azure-china-regions",
-      "notes": "Microsoft does not publish a physical location for this region; coordinates are an unverified placement."
+      "notes": "Microsoft does not publish a physical location for this region; coordinates are an unverified placement.",
+      "low_co2": "not published",
+      "low_co2_src": null
     }
   ],
   "pipeline": [],

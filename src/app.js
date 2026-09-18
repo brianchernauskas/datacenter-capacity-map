@@ -64,6 +64,13 @@ const COLOR_MODES = {
     scale: Object.fromEntries(Object.entries(ZONE_STATE).map(([k, v]) => [k, v.color])),
     names: Object.fromEntries(Object.entries(ZONE_STATE).map(([k, v]) => [k, v.label]))
   },
+  carbon: {
+    label: 'Low CO₂',
+    legend: 'Google flags low-carbon regions per region. AWS and Microsoft publish no equivalent, so theirs read as not published rather than no.',
+    key: r => r.low_co2 || 'not published',
+    scale: { yes: '#34A853', no: '#94A3B8', 'not published': '#475569' },
+    names: { yes: 'Low CO₂ (Google)', no: 'Not low CO₂', 'not published': 'Not published' }
+  },
   leverage: {
     label: 'Grid leverage',
     legend: 'Buyer leverage on delivery timing, from the Grid-Headroom Map. US markets only.',
@@ -351,6 +358,8 @@ function renderDetail() {
     { label: 'Paired with',  val: r.paired_with_raw, src: r.paired_src, missing: 'no pair' },
     { label: 'Capacity (MW)', val: r.capacity_mw, src: null },
     { label: 'Coordinate precision', val: PRECISION[r.coords_precision] && PRECISION[r.coords_precision].label, src: r.coords_src },
+    { label: 'Low CO₂', val: r.low_co2 === 'not published' ? null : (r.low_co2 === 'yes' ? 'Yes' : 'No'),
+      src: r.low_co2_src, missing: 'not published by this provider' },
     { label: 'Grid market',      val: r.grid && r.grid.market, src: r.grid && r.grid.src },
     { label: 'Constraint index', val: r.grid && r.grid.constraint_index, src: r.grid && r.grid.src },
     { label: 'Buyer leverage',   val: r.grid && r.grid.leverage, src: r.grid && r.grid.src }
@@ -509,7 +518,7 @@ function renderSources() {
     </div>`).join('');
 
   $('footer').innerHTML =
-    `Schema v1.2 · ${esc(state.providers.map(p => p.short + ' as of ' + p._asOf).join(' · '))} · ` +
+    `Schema v1.3 · ${esc(state.providers.map(p => p.short + ' as of ' + p._asOf).join(' · '))} · ` +
     `coordinates are metro centroids unless a record says otherwise, never physical facility locations. ` +
     `Capacity in megawatts is deliberately left uncollected until a citable source exists for it.`;
 }

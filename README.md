@@ -3,8 +3,8 @@
 Interactive global and regional view of hyperscaler and neocloud data centre footprint —
 what is live, where, and what it means for buyer leverage.
 
-**Status: step 2 of 5 in progress.** Two providers (AWS, Azure), structural data only,
-full provenance plumbing.
+**Status: step 2 of 5 in progress.** Three providers (AWS, Azure, GCP) — 148 regions,
+structural data only, full provenance plumbing.
 
 ## What is here
 
@@ -16,6 +16,7 @@ full provenance plumbing.
 | `data/providers.json` | Load manifest — add a provider by naming it here |
 | `data/aws.json` | 39 AWS regions, sourced |
 | `data/azure.json` | 66 Azure regions, sourced |
+| `data/gcp.json` | 43 GCP regions, sourced |
 | `SCHEMA.md` | The contract every provider file must satisfy |
 
 Served locally on port 3120 (`dc-capacity-map` in the workspace `.claude/launch.json`).
@@ -46,10 +47,29 @@ Adding a second provider was the real test, and it broke three v1.0 assumptions:
    asymmetrically. AWS has no such concept, so the field is null there.
 3. **Access is a spectrum.** AWS `opt_in` and Azure's restricted-access regions are the
    same idea at different strengths, so both collapsed into `access`:
-   `general` / `opt-in` / `restricted`. 31 of the 105 regions are gated somehow.
+   `general` / `opt-in` / `restricted`. 31 of the 148 regions are gated somehow, all
+   of them AWS or Azure — every GCP region is open.
+
+## What GCP added
+
+GCP slotted into the v1.2 schema without breaking it — the first provider that did — but
+it publishes one thing the others do not:
+
+- **Low CO₂ per region.** Google flags 19 of its 43 regions as low-carbon. AWS and
+  Microsoft publish no equivalent, so their records carry `"low_co2": "not published"`
+  rather than `"no"`, and the carbon layer renders that as a distinct third state. A
+  missing value must never read as a negative one.
+- **Locality-level siting for 10 regions.** Google's region table names a town
+  ("Council Bluffs, Iowa", "The Dalles, Oregon") rather than a metro, which earns
+  `campus` precision. It still is not facility precision — see Caveats.
+- **Zone count can overstate physical separation.** Google states that Stockholm, Mexico,
+  Osaka and Montréal run their three zones across only one or two physical data centres
+  and are expanding. Those four carry a note saying so.
 
 ## What the reconciliation found
 
+- **GCP reconciles exactly on both counts** — 43 regions and 130 zones against Google's
+  own stated headline. The only provider so far that does.
 - **AWS region count reconciles exactly:** 39 records against 39 stated.
 - **AWS AZ sum is short by 1:** 123 against AWS's stated 124. The gap sits in the five
   GovCloud / China / EU Sovereign regions whose AZ counts are not published.
@@ -63,8 +83,8 @@ Adding a second provider was the real test, and it broke three v1.0 assumptions:
 - **Global** — Natural Earth projection, bubble per region. Hollow bubbles have no zones.
 - **Regional** — six geographies. Zooms, labels each region code, rolls stats up.
 - **Provider** — all, or one at a time.
-- **Colour by** — Provider, Partition, Zone support, or Grid leverage (joined from the
-  Grid-Headroom Map).
+- **Colour by** — Provider, Partition, Zone support, Low CO₂, or Grid leverage (joined
+  from the Grid-Headroom Map).
 
 Coincident regions are fanned apart at draw time only — Azure runs two regions in Virginia
 and two in Canberra on identical published coordinates. The data is not altered to
@@ -73,7 +93,7 @@ separate them.
 ## Roadmap
 
 1. ~~Schema + AWS by hand~~ — done.
-2. ~~Azure~~ — done. Remaining: citation pass on unverified launch years, then GCP,
+2. ~~Azure~~, ~~GCP~~ — done. Remaining: citation pass on unverified launch years, then
    Oracle, Meta and the neoclouds against the frozen schema.
 3. Capacity layer — CBRE / JLL metro reports, flagged as estimates with explicit `basis`.
 4. Daily intelligence digest (separate build).
@@ -82,8 +102,10 @@ separate them.
 ## Caveats
 
 - Coordinate precision is **declared per record** (`facility` / `campus` / `metro-centroid`)
-  and drawn as a positional-uncertainty ring. No facility-level records yet: AWS and
-  Microsoft publish no facility addresses. Google and Meta do, so their files will.
+  and drawn as a positional-uncertainty ring. **Still no facility-level records.** Google
+  publishes its owned campuses by town only, with no street addresses, and that set is not
+  the same as the GCP region list — so GCP contributes 10 `campus` records, not `facility`.
+  AWS and Microsoft publish neither.
 - Microsoft publishes **no physical location at all** for the six China regions; those
   coordinates are unverified placements and flagged as such on each record.
 - AWS launch years are unverified until the citation pass. Azure launch years are not

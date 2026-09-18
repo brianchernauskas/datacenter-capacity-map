@@ -1,4 +1,4 @@
-# Data schema — v1.2
+# Data schema — v1.3
 
 One JSON file per provider, in `data/<provider>.json`. The map reads them all and merges.
 This file is the contract. **Fill the fields; do not invent fields, and do not change field names.**
@@ -23,7 +23,7 @@ Data Quality panel counts it in public.
 
 ```jsonc
 {
-  "schema_version": "1.0",
+  "schema_version": "1.3",
   "as_of": "YYYY-MM-DD",          // when this file was last refreshed
   "provider": { "id", "name", "short", "type", "color", "parent", "ticker" },
   "sources":  { "<source-id>": { "title", "url", "accessed", "tier", "note" } },
@@ -107,6 +107,21 @@ The page then reports it as a transcription rather than a reconciliation. Compar
 number against itself always passes, and a check that always passes implies a
 verification that never happened. That is worse than no check at all.
 
+## Optional provider-specific fields
+
+Some providers publish something the others do not. Record it rather than dropping it, and
+record its **absence explicitly** on the providers that do not publish it — otherwise a
+missing value reads as a negative value.
+
+| Field | Values | Published by |
+|---|---|---|
+| `low_co2` | `yes` / `no` / `not published` | Google only |
+| `low_co2_src` | source id, or null | |
+
+Google flags low-carbon regions per region. AWS and Microsoft publish no equivalent, so
+every AWS and Azure record carries `"low_co2": "not published"` — never `"no"`. The map's
+carbon layer renders those as a distinct third state for exactly this reason.
+
 ## `coords_precision` — say how well you actually know where it is
 
 Use facility-level coordinates **whenever they are known and citable**, and fall back to
@@ -118,14 +133,26 @@ coarser positions otherwise. The point is that the map never renders a guess as 
 | `campus` | Known siting cluster, individual building unresolved | Dashed ring |
 | `metro-centroid` | Metro only, position indicative | Wide dotted ring |
 
-Where facility precision is actually available:
+Where facility precision is actually available — **no provider checked so far reaches it**:
 
-- **Google** publishes data centre addresses officially at `google.com/about/datacenters/locations/`.
-- **Meta** publishes them at `datacenters.atmeta.com`.
-- **Microsoft** publishes region geographies but not facility addresses.
-- **AWS** publishes neither. Its facilities are documented by county permitting records,
-  utility filings and local press — genuine tier-A primary sources if you go and read them,
-  which is a per-site research job, not a scrape.
+- **Google** publishes its owned campuses at `datacenters.google/locations/`, but by
+  **town only, with no street addresses**, and that set is not the same as the GCP region
+  list. Separately, the Compute Engine region table names a locality per region
+  ("Council Bluffs, Iowa", "The Dalles, Oregon"), which is good enough for `campus` but
+  not `facility`. 10 of 43 GCP regions qualify on that basis.
+- **Microsoft** publishes region geographies but not facility addresses, and publishes no
+  location at all for the six China regions.
+- **AWS** publishes neither.
+- **Meta** is said to publish locations at `datacenters.atmeta.com` — unverified, check
+  before relying on it.
+
+For AWS and Azure, facility siting is documented by county permitting records, utility
+filings and local press. Those are genuine tier-A primary sources if you go and read them,
+which is a per-site research job, not a scrape.
+
+Rule of thumb used here: precision reflects **how specific the provider's own published
+location string is**. A named town is `campus`; a metro name is `metro-centroid`. That
+keeps the judgement sourced rather than inferred.
 
 Third-party compilers (DataCenterMap, Baxtel, Datacenters.com) hold good facility data, but it
 is *their* compiled dataset. Use it to know where to look in the primary records; do not copy
