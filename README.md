@@ -134,6 +134,13 @@ summed into a headline; totals across bases are marked `≈`.
 - **Colour by** — Provider, Partition, Zone support, Low CO₂, or Grid leverage (joined
   from the Grid-Headroom Map).
 
+Labels are placed, not just printed. Larger points claim label space first. Each label
+tries right, left, above and below its marker and is drawn only where it overlaps no other
+label, no marker, and neither the floating legend nor the caption. Labels that fit nowhere
+are hidden, counted in the caption, and shown on hover; a selected point always keeps its
+label. In regional views the map is fitted to the right of the legend so no point sits
+underneath it.
+
 Coincident regions are fanned apart at draw time only — Azure runs two regions in Virginia
 and two in Canberra on identical published coordinates. The data is not altered to
 separate them.
@@ -142,7 +149,7 @@ separate them.
 
 1. ~~Schema + AWS by hand~~ — done.
 2. ~~Azure~~, ~~GCP~~, ~~neoclouds~~, ~~Oracle~~, ~~Meta~~ — done. Remaining: citation pass
-   on unverified AWS launch years; label crowding in dense regional views.
+   on unverified AWS launch years.
 3. Capacity layer — CBRE / JLL metro reports, flagged as estimates with explicit `basis`.
 4. Daily intelligence digest (separate build).
 5. Digest feeds `pending-changes.json` so the map maintains itself.

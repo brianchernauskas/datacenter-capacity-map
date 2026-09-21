@@ -335,6 +335,63 @@ function deOverlap(items, projection) {
 
 const RING = { campus: 1.7, 'metro-centroid': 2.6, 'region-centroid': 3.4 };
 
+/* Greedy label placement. Larger points claim label space first; each label tries right,
+ * left, above and below its marker, and is only drawn where it overlaps no marker and no
+ * label already placed. Labels that fit nowhere are hidden and shown on hover. The
+ * selected point always gets its label. Returns the number hidden. */
+function placeLabels(svg, pos, radiusOf, W, H, clearLeft = 0) {
+  const items = [];
+  svg.selectAll('g.node').each(function (d) {
+    const t = this.querySelector('.node-label');
+    if (!t || !d) return;
+    const p = pos.get(d.uid);
+    items.push({ d, t, x: p[0], y: p[1], r: radiusOf(d) });
+  });
+  const hit = (a, b) => a.x0 < b.x1 && a.x1 > b.x0 && a.y0 < b.y1 && a.y1 > b.y0;
+  // Every marker is an obstacle, not just every label — a name printed across a
+  // neighbouring point is as unreadable as two names on top of each other.
+  const SW = 1.5;   // marker outline stroke extends past the radius
+  const taken = items.map(it => ({ x0: it.x - it.r - SW, y0: it.y - it.r - SW, x1: it.x + it.r + SW, y1: it.y + it.r + SW }));
+  if (clearLeft) taken.push({ x0: 0, y0: 0, x1: clearLeft, y1: H });   // the strip under the legend
+  // The caption floats over the top-right corner; keep labels out from under it too.
+  const cap = $('map-caption'), svgBox = $('map').getBoundingClientRect();
+  if (getComputedStyle(cap).position === 'absolute' && svgBox.width) {
+    const c = cap.getBoundingClientRect(), k = W / svgBox.width;
+    taken.push({ x0: (c.left - svgBox.left) * k - 4, y0: (c.top - svgBox.top) * k - 4,
+                 x1: (c.right - svgBox.left) * k + 4, y1: (c.bottom - svgBox.top) * k + 4 });
+  }
+  const priority = it => (state.selected === it.d.uid ? 1e9 : 0) + it.r * 10 + (it.d._kind === 'region' ? 2 : 0);
+  items.sort((a, b) => priority(b) - priority(a));
+
+  const LH = 10, GAP = 3, PAD = 1;
+  let hidden = 0;
+  items.forEach(it => {
+    const w = it.t.getComputedTextLength();
+    const { x, y, r } = it;
+    const cands = [
+      { lx: r + GAP,    ly: 0,              dy: '0.34em', anchor: 'start',  box: [x + r + GAP, y - LH / 2] },
+      { lx: -(r + GAP), ly: 0,              dy: '0.34em', anchor: 'end',    box: [x - r - GAP - w, y - LH / 2] },
+      { lx: 0,          ly: -(r + GAP + 1), dy: '0',      anchor: 'middle', box: [x - w / 2, y - r - GAP - LH] },
+      { lx: 0,          ly: r + GAP + 8,    dy: '0',      anchor: 'middle', box: [x - w / 2, y + r + GAP] }
+    ];
+    const fits = c => {
+      const b = { x0: c.box[0] - PAD, y0: c.box[1] - PAD, x1: c.box[0] + w + PAD, y1: c.box[1] + LH + PAD };
+      if (b.x0 < 2 || b.y0 < 2 || b.x1 > W - 2 || b.y1 > H - 2) return null;
+      return taken.some(o => hit(b, o)) ? null : b;
+    };
+    let chosen = null, box = null;
+    for (const c of cands) { box = fits(c); if (box) { chosen = c; break; } }
+    if (!chosen && state.selected === it.d.uid) chosen = cands[0];   // always label the selection
+    if (!chosen) { it.t.classList.add('is-hidden'); hidden++; return; }
+    it.t.setAttribute('x', chosen.lx);
+    it.t.setAttribute('y', chosen.ly);
+    it.t.setAttribute('dy', chosen.dy);
+    it.t.setAttribute('text-anchor', chosen.anchor);
+    if (box) taken.push(box);
+  });
+  return hidden;
+}
+
 function renderMap() {
   const W = 1320, H = 620;
   const svg = d3.select('#map').attr('viewBox', `0 0 ${W} ${H}`);
@@ -344,17 +401,27 @@ function renderMap() {
   const everything = regions.concat(sites, pipeline);
   const land = topojson.feature(state.world, state.world.objects.countries);
 
-  let projection;
+  // The legend floats over the map's left edge on wide screens. In regional views, fit the
+  // points into the space to its right so no marker or label ends up underneath it.
+  const legendEl = $('legend'), svgEl = $('map');
+  const legendFloats = getComputedStyle(legendEl).position === 'absolute';
+  const toSvg = W / (svgEl.getBoundingClientRect().width || W);
+  const LEGEND_PX = 16 + 260 + 14;   // left offset + max-width + breathing room, in CSS px
+  const reserveLeft = legendFloats ? Math.round(LEGEND_PX * toSvg) : 0;
+
+  let projection, clearLeft = 0;
   if (state.geo === 'Global' || !everything.length) {
     projection = d3.geoNaturalEarth1().fitExtent([[12, 18], [W - 12, H - 18]], { type: 'Sphere' });
   } else {
+    clearLeft = reserveLeft;
     const pts = { type: 'MultiPoint', coordinates: everything.map(r => r.coords) };
     const MAX_SCALE = 900;
-    projection = d3.geoMercator().fitExtent([[70, 60], [W - 70, H - 60]], pts);
+    const x0 = 70 + clearLeft;
+    projection = d3.geoMercator().fitExtent([[x0, 60], [W - 70, H - 60]], pts);
     // fitExtent sets scale AND a matching translate, so capping the scale alone leaves
     // the projection inconsistent and throws every point off-canvas — recentre explicitly.
     if (projection.scale() > MAX_SCALE) {
-      projection.scale(MAX_SCALE).center(d3.geoCentroid(pts)).translate([W / 2, H / 2]);
+      projection.scale(MAX_SCALE).center(d3.geoCentroid(pts)).translate([(x0 + W - 70) / 2, H / 2]);
     }
   }
   const path = d3.geoPath(projection);
@@ -424,14 +491,27 @@ function renderMap() {
   drawRegions(svg.append('g'), regions, false);
   drawSites(svg.append('g'));
 
+  // Hovering brings a point (and its label) above its neighbours within its layer.
+  svg.selectAll('g.node').on('mouseenter.raise', function () { d3.select(this).raise(); });
+
+  // Caption and legend both float over the map, and placeLabels measures them, so they must
+  // hold their final size BEFORE placement. The hidden-count line is reserved up front and
+  // its number filled in afterwards, so the caption's height does not change underneath.
   const provNames = state.providers.filter(p => state.provider === 'all' || p.id === state.provider || p.type === state.provider)
     .map(p => p.short).join(' · ');
   const keys = [];
   if (regions.length) keys.push('● region, size = zones, hollow = no zones');
   if (sites.length) keys.push('◆ site, size = disclosed MW, hollow = no live MW');
-  $('map-caption').innerHTML = `${esc(provNames)}<br>${esc(keys.join(' · '))}`;
-
+  $('map-caption').innerHTML = `${esc(provNames)}<br>${esc(keys.join(' · '))}` +
+    (showLabels ? `<br><span id="hidden-count">— labels hidden to avoid overlap — hover a point to see its name</span>` : '');
   renderLegend();
+
+  const hidden = showLabels ? placeLabels(svg, pos, d => sizeOf(d) * (d._kind === 'site' ? 1.25 : 1), W, H, clearLeft) : 0;
+  if (showLabels) {
+    $('hidden-count').textContent = hidden
+      ? `${hidden} labels hidden to avoid overlap — hover a point to see its name`
+      : 'all labels shown';
+  }
 }
 
 function renderLegend() {

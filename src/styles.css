@@ -138,6 +138,10 @@ main { max-width: 1320px; margin: 0 auto; padding: 24px; }
 .node-halo { fill: currentColor; opacity: .16; }
 .node-dot { fill: currentColor; stroke: #0E1626; stroke-width: 1.2; }
 .node.is-pipeline .node-dot { fill: none; stroke: currentColor; stroke-width: 2; stroke-dasharray: 3 2.5; }
+/* Labels that could not be placed without overlap appear only on hover or selection. */
+.node-label.is-hidden { display: none; }
+.node:hover .node-label.is-hidden, .node.is-sel .node-label.is-hidden { display: block; }
+.node:hover .node-label { font-weight: 700; }
 .node-precision { fill: none; stroke: currentColor; }
 .node-precision.is-metro-centroid { stroke-opacity: .42; stroke-width: 1; stroke-dasharray: 1.5 3; }
 .node-precision.is-campus { stroke-opacity: .6; stroke-width: 1; stroke-dasharray: 5 2.5; }
