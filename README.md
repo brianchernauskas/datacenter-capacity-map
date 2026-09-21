@@ -141,6 +141,14 @@ are hidden, counted in the caption, and shown on hover; a selected point always 
 label. In regional views the map is fitted to the right of the legend so no point sits
 underneath it.
 
+**Zoom and pan.** Buttons top-left (+, −, Reset); Ctrl/⌘ + scroll or trackpad pinch; drag
+to pan; two-finger pinch on touch. A plain scroll wheel and one-finger swipes still scroll the
+page. Only the land scales — markers and labels keep their size, and labels are re-placed each
+time a zoom ends, so zooming in reveals names that did not fit. The world view shows labels
+from 2× up. Zoom survives selecting a point or changing colours and resets when the view or
+provider changes, because those refit the projection. The legend can be collapsed to clear
+the left of the map, and the caption sits below the map so nothing can be panned under it.
+
 Coincident regions are fanned apart at draw time only — Azure runs two regions in Virginia
 and two in Canberra on identical published coordinates. The data is not altered to
 separate them.

@@ -312,7 +312,9 @@ function renderControls() {
 
 /* Several records share a point — Azure runs two regions in Virginia, Crusoe runs two
  * campuses in Abilene, Nebius and Nscale both list Keflavík. Rather than falsify the
- * data to separate them, coincident points are fanned out at draw time only. */
+ * data to separate them, coincident points are fanned out at draw time only.
+ * Returns, per record, its projected base position and a SCREEN-SPACE fan offset, kept
+ * apart so zooming moves the point without stretching the fan. */
 function deOverlap(items, projection) {
   const buckets = new Map();
   items.forEach(d => {
@@ -323,43 +325,53 @@ function deOverlap(items, projection) {
   });
   const out = new Map();
   buckets.forEach(group => {
-    if (group.length === 1) { out.set(group[0].d.uid, group[0].p); return; }
-    const spread = 6 + group.length;
+    const spread = group.length === 1 ? 0 : 6 + group.length;
     group.forEach((g, i) => {
       const a = (i / group.length) * Math.PI * 2 - Math.PI / 2;
-      out.set(g.d.uid, [g.p[0] + Math.cos(a) * spread, g.p[1] + Math.sin(a) * spread]);
+      out.set(g.d.uid, { bx: g.p[0], by: g.p[1], ox: Math.cos(a) * spread, oy: Math.sin(a) * spread });
     });
   });
   return out;
 }
 
 const RING = { campus: 1.7, 'metro-centroid': 2.6, 'region-centroid': 3.4 };
+const ZOOM_MAX = 16;
+const LABEL_ZOOM_GLOBAL = 2;   // on the world view, labels start once zoomed in this far
 
 /* Greedy label placement. Larger points claim label space first; each label tries right,
  * left, above and below its marker, and is only drawn where it overlaps no marker and no
  * label already placed. Labels that fit nowhere are hidden and shown on hover. The
- * selected point always gets its label. Returns the number hidden. */
+ * selected point always gets its label. Points panned out of view are skipped.
+ * Returns the number of on-screen labels hidden. */
 function placeLabels(svg, pos, radiusOf, W, H, clearLeft = 0) {
-  const items = [];
+  const items = [], taken = [];
+  const SW = 1.5;   // marker outline stroke extends past the radius
   svg.selectAll('g.node').each(function (d) {
     const t = this.querySelector('.node-label');
     if (!t || !d) return;
-    const p = pos.get(d.uid);
-    items.push({ d, t, x: p[0], y: p[1], r: radiusOf(d) });
+    t.classList.remove('is-hidden');
+    const p = pos.get(d.uid), r = radiusOf(d);
+    // Every marker even partly on screen is an obstacle — a name printed across a
+    // neighbouring point is as unreadable as two names on top of each other. Only points
+    // whose centre is on screen get a label of their own.
+    const box = { x0: p[0] - r - SW, y0: p[1] - r - SW, x1: p[0] + r + SW, y1: p[1] + r + SW };
+    if (box.x1 >= 0 && box.x0 <= W && box.y1 >= 0 && box.y0 <= H) taken.push(box);
+    const onScreen = p[0] >= 0 && p[0] <= W && p[1] >= 0 && p[1] <= H;
+    if (!onScreen) { t.classList.add('is-hidden'); return; }
+    items.push({ d, t, x: p[0], y: p[1], r });
   });
   const hit = (a, b) => a.x0 < b.x1 && a.x1 > b.x0 && a.y0 < b.y1 && a.y1 > b.y0;
-  // Every marker is an obstacle, not just every label — a name printed across a
-  // neighbouring point is as unreadable as two names on top of each other.
-  const SW = 1.5;   // marker outline stroke extends past the radius
-  const taken = items.map(it => ({ x0: it.x - it.r - SW, y0: it.y - it.r - SW, x1: it.x + it.r + SW, y1: it.y + it.r + SW }));
   if (clearLeft) taken.push({ x0: 0, y0: 0, x1: clearLeft, y1: H });   // the strip under the legend
-  // The caption floats over the top-right corner; keep labels out from under it too.
-  const cap = $('map-caption'), svgBox = $('map').getBoundingClientRect();
-  if (getComputedStyle(cap).position === 'absolute' && svgBox.width) {
-    const c = cap.getBoundingClientRect(), k = W / svgBox.width;
+  // Floating panels over the map — caption top-right, zoom controls bottom-right — are
+  // off-limits for labels too.
+  const svgBox = $('map').getBoundingClientRect();
+  ['map-caption', 'map-zoom', 'legend'].forEach(id => {
+    const el = $(id);
+    if (!el || getComputedStyle(el).position !== 'absolute' || !svgBox.width) return;
+    const c = el.getBoundingClientRect(), k = W / svgBox.width;
     taken.push({ x0: (c.left - svgBox.left) * k - 4, y0: (c.top - svgBox.top) * k - 4,
                  x1: (c.right - svgBox.left) * k + 4, y1: (c.bottom - svgBox.top) * k + 4 });
-  }
+  });
   const priority = it => (state.selected === it.d.uid ? 1e9 : 0) + it.r * 10 + (it.d._kind === 'region' ? 2 : 0);
   items.sort((a, b) => priority(b) - priority(a));
 
@@ -395,6 +407,7 @@ function placeLabels(svg, pos, radiusOf, W, H, clearLeft = 0) {
 function renderMap() {
   const W = 1320, H = 620;
   const svg = d3.select('#map').attr('viewBox', `0 0 ${W} ${H}`);
+  svg.on('.zoom', null);
   svg.selectAll('*').remove();
 
   const regions = visibleRegions(), sites = visibleSites(), pipeline = visiblePipeline();
@@ -407,7 +420,7 @@ function renderMap() {
   const legendFloats = getComputedStyle(legendEl).position === 'absolute';
   const toSvg = W / (svgEl.getBoundingClientRect().width || W);
   const LEGEND_PX = 16 + 260 + 14;   // left offset + max-width + breathing room, in CSS px
-  const reserveLeft = legendFloats ? Math.round(LEGEND_PX * toSvg) : 0;
+  const reserveLeft = legendFloats && !state.legendCollapsed ? Math.round(LEGEND_PX * toSvg) : 0;
 
   let projection, clearLeft = 0;
   if (state.geo === 'Global' || !everything.length) {
@@ -426,21 +439,30 @@ function renderMap() {
   }
   const path = d3.geoPath(projection);
 
-  svg.append('path').attr('class', 'sphere').attr('d', path({ type: 'Sphere' }));
-  svg.append('path').attr('class', 'graticule').attr('d', path(d3.geoGraticule10()));
-  svg.append('g').selectAll('path').data(land.features).join('path').attr('class', 'land').attr('d', path);
+  // The base map scales with zoom; markers and labels are repositioned but keep their size.
+  const base = svg.append('g').attr('class', 'zoom-base');
+  base.append('path').attr('class', 'sphere').attr('d', path({ type: 'Sphere' }));
+  base.append('path').attr('class', 'graticule').attr('d', path(d3.geoGraticule10()));
+  base.append('g').selectAll('path').data(land.features).join('path').attr('class', 'land').attr('d', path);
 
-  const pos = deOverlap(everything, projection);
+  // A zoom transform only means anything against the projection it was made on, and the
+  // regional projection is refitted whenever the geography or provider filter changes.
+  // Selecting a point or switching colours keeps the zoom; those change neither.
+  const zoomKey = state.geo + '|' + state.provider + '|' + (state.legendCollapsed ? 'L0' : 'L1');
+  if (state.zoomKey !== zoomKey) { state.zoomKey = zoomKey; state.zoomT = d3.zoomIdentity; }
+  let t = state.zoomT;
+
+  const pos0 = deOverlap(everything, projection);
+  const screen = uid => { const p = pos0.get(uid); return [t.applyX(p.bx) + p.ox, t.applyY(p.by) + p.oy]; };
   const azScale = d3.scaleSqrt().domain([0, 6]).range([3.5, 11.5]).clamp(true);
   const mwScale = d3.scaleSqrt().domain([0, 2000]).range([4, 17]).clamp(true);
   const sizeOf = d => {
     if (d._kind === 'site') { const p = liveOf(d) || pipeOf(d) || potOf(d); return mwScale(p ? p.mw : 0); }
     return azScale(d.azs_planned != null ? d.azs_planned : Math.max(d.azs, 1.4));
   };
-  const showLabels = state.geo !== 'Global';
   const selCls = d => (state.selected === d.uid ? ' is-sel' : '') + (state.selected && state.selected !== d.uid ? ' is-dim' : '');
   const click = (e, d) => { state.selected = state.selected === d.uid ? null : d.uid; renderAll(); };
-  const place = d => { const p = pos.get(d.uid); return `translate(${p[0]},${p[1]})`; };
+  const place = d => { const p = screen(d.uid); return `translate(${p[0]},${p[1]})`; };
   const precisionRing = g => g.filter(d => d.coords_precision !== 'facility').append('circle')
     .attr('class', d => 'node-precision is-' + (d.coords_precision || 'metro-centroid'))
     .attr('r', d => sizeOf(d) * (RING[d.coords_precision] || 2.6));
@@ -448,7 +470,7 @@ function renderMap() {
     .attr('class', 'node-cross')
     .attr('d', d => { const r = sizeOf(d) * 2.2; return `M${-r},0H${r}M0,${-r}V${r}`; });
 
-  // Hyperscaler regions and announced regions: circles.
+  // Every point gets a label element. Placement decides which are shown; the rest appear on hover.
   const drawRegions = (sel, items, isPipe) => sel.selectAll('g').data(items, d => d.uid).join('g')
     .attr('class', d => 'node' + (isPipe ? ' is-pipeline' : '') + selCls(d))
     .attr('transform', place)
@@ -461,11 +483,11 @@ function renderMap() {
       precisionRing(g);
       g.append('circle').attr('class', d => 'node-dot' + (!isPipe && d.azs === 0 ? ' is-hollow' : '')).attr('r', sizeOf);
       crosshair(g);
-      if (showLabels) g.append('text').attr('class', 'node-label').attr('x', d => sizeOf(d) + 4).attr('dy', '0.34em')
+      g.append('text').attr('class', 'node-label').attr('x', d => sizeOf(d) + 4).attr('dy', '0.34em')
         .text(d => isPipe ? d.name + ' (planned)' : d.id);
     });
 
-  // Neocloud sites: diamonds sized by MW. Hollow = no live MW disclosed yet.
+  // Sites: diamonds sized by MW. Hollow = no live MW disclosed yet.
   const drawSites = sel => sel.selectAll('g').data(sites, d => d.uid).join('g')
     .attr('class', d => 'node is-site' + (d.status === 'paused' ? ' is-paused' : '') + selCls(d))
     .attr('transform', place)
@@ -483,35 +505,85 @@ function renderMap() {
         .attr('class', d => 'site-dot' + (liveOf(d) ? '' : ' is-hollow'))
         .attr('d', d => { const r = sizeOf(d) * 1.25; return `M0,${-r}L${r},0L0,${r}L${-r},0Z`; });
       crosshair(g);
-      if (showLabels) g.append('text').attr('class', 'node-label').attr('x', d => sizeOf(d) * 1.25 + 4).attr('dy', '0.34em')
+      g.append('text').attr('class', 'node-label').attr('x', d => sizeOf(d) * 1.25 + 4).attr('dy', '0.34em')
         .text(d => d.name);
     });
 
   drawRegions(svg.append('g'), pipeline, true);
   drawRegions(svg.append('g'), regions, false);
   drawSites(svg.append('g'));
+  const nodes = svg.selectAll('g.node');
 
   // Hovering brings a point (and its label) above its neighbours within its layer.
-  svg.selectAll('g.node').on('mouseenter.raise', function () { d3.select(this).raise(); });
+  nodes.on('mouseenter.raise', function () { d3.select(this).raise(); });
 
   // Caption and legend both float over the map, and placeLabels measures them, so they must
-  // hold their final size BEFORE placement. The hidden-count line is reserved up front and
-  // its number filled in afterwards, so the caption's height does not change underneath.
+  // hold their final size BEFORE placement. The status line is reserved up front and its
+  // text filled in afterwards, so the caption's height does not change underneath.
   const provNames = state.providers.filter(p => state.provider === 'all' || p.id === state.provider || p.type === state.provider)
     .map(p => p.short).join(' · ');
   const keys = [];
   if (regions.length) keys.push('● region, size = zones, hollow = no zones');
   if (sites.length) keys.push('◆ site, size = disclosed MW, hollow = no live MW');
   $('map-caption').innerHTML = `${esc(provNames)}<br>${esc(keys.join(' · '))}` +
-    (showLabels ? `<br><span id="hidden-count">— labels hidden to avoid overlap — hover a point to see its name</span>` : '');
+    `<br><span id="hidden-count">— labels hidden to avoid overlap — hover a point to see its name</span>`;
   renderLegend();
 
-  const hidden = showLabels ? placeLabels(svg, pos, d => sizeOf(d) * (d._kind === 'site' ? 1.25 : 1), W, H, clearLeft) : 0;
-  if (showLabels) {
-    $('hidden-count').textContent = hidden
-      ? `${hidden} labels hidden to avoid overlap — hover a point to see its name`
-      : 'all labels shown';
-  }
+  const radiusOf = d => sizeOf(d) * (d._kind === 'site' ? 1.25 : 1);
+  const relabel = () => {
+    const status = $('hidden-count');
+    if (state.geo === 'Global' && t.k < LABEL_ZOOM_GLOBAL) {
+      nodes.selectAll('.node-label').classed('is-hidden', true);
+      if (status) status.textContent = 'zoom in to label points — hover a point to see its name';
+      return;
+    }
+    const pos = new Map();
+    nodes.each(d => pos.set(d.uid, screen(d.uid)));
+    const hidden = placeLabels(svg, pos, radiusOf, W, H, t.k === 1 ? clearLeft : 0);
+    if (status) status.textContent = hidden
+      ? `${hidden} labels hidden to avoid overlap — zoom in or hover a point to see its name`
+      : 'all labels in view shown';
+  };
+
+  // ── zoom ──
+  // Wheel zoom needs Ctrl/⌘ so the page still scrolls normally over a large map; trackpad
+  // pinch arrives as Ctrl+wheel, so it works without a key. On touch, one finger scrolls the
+  // page and two fingers pinch or pan the map.
+  const zoom = d3.zoom()
+    .scaleExtent([1, ZOOM_MAX])
+    .wheelDelta(ev => -ev.deltaY * (ev.deltaMode === 1 ? 0.05 : ev.deltaMode ? 1 : Math.abs(ev.deltaY) < 50 ? 0.01 : 0.002))
+    .extent([[0, 0], [W, H]])
+    .translateExtent([[0, 0], [W, H]])
+    .filter(ev => {
+      if (ev.type === 'wheel') return ev.ctrlKey || ev.metaKey;
+      if (ev.type === 'touchstart') return ev.touches.length >= 2;
+      return !ev.button;
+    })
+    .on('start', () => svg.classed('is-zooming', true))
+    .on('zoom', ev => {
+      t = state.zoomT = ev.transform;
+      base.attr('transform', t);
+      nodes.attr('transform', place);
+      $('map-wrap-zoom-level').textContent = t.k > 1.01 ? `${t.k.toFixed(1)}×` : '';
+    })
+    .on('end', () => { svg.classed('is-zooming', false); relabel(); });
+  svg.call(zoom).on('dblclick.zoom', null);
+  svg.style('touch-action', 'pan-y');
+  if (t.k !== 1 || t.x || t.y) svg.call(zoom.transform, t);   // restore after a redraw
+  else base.attr('transform', null);
+  state.zoomApi = { svg, zoom };
+  $('map-wrap-zoom-level').textContent = t.k > 1.01 ? `${t.k.toFixed(1)}×` : '';
+
+  relabel();
+}
+
+function zoomBy(factor) {
+  const z = state.zoomApi; if (!z) return;
+  z.svg.transition().duration(250).call(z.zoom.scaleBy, factor);
+}
+function zoomReset() {
+  const z = state.zoomApi; if (!z) return;
+  z.svg.transition().duration(300).call(z.zoom.transform, d3.zoomIdentity);
 }
 
 function renderLegend() {
@@ -537,10 +609,17 @@ function renderLegend() {
   const precRows = Object.keys(PRECISION).filter(k => precPresent.has(k)).map(k =>
     `<div class="legend-row"><span class="legend-prec is-${k}"></span>${esc(PRECISION[k].label)}</div>`).join('');
 
-  $('legend').innerHTML =
-    `<h4>${esc(m.label)}</h4>${rows}` +
+  const lg = $('legend');
+  lg.classList.toggle('is-collapsed', !!state.legendCollapsed);
+  lg.innerHTML =
+    `<button type="button" class="legend-toggle" id="legend-toggle" aria-expanded="${!state.legendCollapsed}">` +
+      `${state.legendCollapsed ? 'Show legend' : 'Hide legend'}</button>` +
+    `<div class="legend-body"><h4>${esc(m.label)}</h4>${rows}` +
     `<div class="legend-prec-block"><h4>Location precision</h4>${precRows}</div>` +
-    `<div style="margin-top:8px;font-size:.66rem;opacity:.6;line-height:1.4">${esc(m.legend)}</div>`;
+    `<div style="margin-top:8px;font-size:.66rem;opacity:.6;line-height:1.4">${esc(m.legend)}</div></div>`;
+  // Collapsing frees the left of the map. The regional projection reserves room for the
+  // expanded legend, so toggling it refits the map (and resets zoom, see zoomKey).
+  $('legend-toggle').onclick = () => { state.legendCollapsed = !state.legendCollapsed; renderMap(); };
 }
 
 /* ── detail ────────────────────────────────────────────────── */
@@ -807,6 +886,12 @@ function renderSources() {
 
 /* ── boot ──────────────────────────────────────────────────── */
 
+function wireZoomControls() {
+  $('zoom-in').onclick = () => zoomBy(1.8);
+  $('zoom-out').onclick = () => zoomBy(1 / 1.8);
+  $('zoom-reset').onclick = zoomReset;
+}
+
 function renderAll() {
   renderStats();
   renderControls();
@@ -845,6 +930,7 @@ getJSON('data/providers.json')
       (f.sites    || []).map(tag('site')).forEach(r => state.sites.push(r));
       (f.pipeline || []).map(tag('pipeline')).forEach(r => state.pipeline.push(r));
     });
+    wireZoomControls();
     renderAll();
   })
   .catch(err => {
