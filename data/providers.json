@@ -4,11 +4,13 @@
     "aws",
     "azure",
     "gcp",
+    "oracle",
     "coreweave",
     "nebius",
     "iren",
     "crusoe",
     "lambda",
-    "nscale"
+    "nscale",
+    "meta"
   ]
 }

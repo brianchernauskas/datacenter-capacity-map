@@ -3,8 +3,8 @@
 Interactive global and regional view of hyperscaler and neocloud data centre footprint —
 what is live, where, and what it means for buyer leverage.
 
-**Status: step 2 of 5 in progress.** Nine providers — three hyperscalers (148 regions) and
-six neoclouds (34 sites) — structural data and disclosed megawatts, full provenance plumbing.
+**Status: step 2 of 5 complete.** Eleven providers — four hyperscalers (203 regions), six
+neoclouds, and Meta as a captive operator (71 sites in all) — with full provenance plumbing.
 
 ## What is here
 
@@ -17,7 +17,9 @@ six neoclouds (34 sites) — structural data and disclosed megawatts, full prove
 | `data/aws.json` | 39 AWS regions, sourced |
 | `data/azure.json` | 66 Azure regions, sourced |
 | `data/gcp.json` | 43 GCP regions, sourced |
+| `data/oracle.json` | 55 Oracle regions across seven realms, plus 4 Stargate build sites |
 | `data/{coreweave,nebius,iren,crusoe,lambda,nscale}.json` | 34 neocloud sites with disclosed MW, sourced |
+| `data/meta.json` | 33 Meta sites with stated investment and groundbreaking year |
 | `SCHEMA.md` | The contract every provider file must satisfy |
 
 Served locally on port 3120 (`dc-capacity-map` in the workspace `.claude/launch.json`).
@@ -95,6 +97,23 @@ summed into a headline; totals across bases are marked `≈`.
 - **First facility-precision record in the dataset:** CoreWeave Lancaster, from a
   press-reported street address.
 
+## What Oracle and Meta added
+
+- **Oracle carries regions and sites in one file.** It sells 55 cloud regions across seven
+  isolated realms (commercial, Serbia, US Government, US Defense, UK, Australia, EU
+  Sovereign) and operates four OpenAI Stargate campuses built by Vantage, Related Digital
+  and BorderPlex/STACK. Stargate Abilene stays under Crusoe so it is not counted twice.
+- **50 of Oracle's 55 regions have a single availability domain** — no in-region zone
+  redundancy. Only Frankfurt, London, Ashburn, Chicago and Phoenix have three. The zone
+  view now separates multi-zone, single-zone and no-zone regions, because a one-AD region
+  read as "has zones" before.
+- **Meta discloses dollars, not megawatts.** Its own fleet page gives 33 sites, each with an
+  announced investment ($104bn+ across the USD-denominated ones, Richland Parish alone
+  $50bn+) and a groundbreaking year, but no power figures and no operational status. Its
+  sites are drawn hollow at minimum size, because size means disclosed MW and Meta
+  discloses none. It is typed `captive`: it sells no cloud, but it competes with every
+  buyer's providers for power, interconnects and GPUs in the same markets.
+
 ## What the reconciliation found
 
 - **GCP reconciles exactly on both counts** — 43 regions and 130 zones against Google's
@@ -122,8 +141,8 @@ separate them.
 ## Roadmap
 
 1. ~~Schema + AWS by hand~~ — done.
-2. ~~Azure~~, ~~GCP~~, ~~neoclouds~~ — done. Remaining: citation pass on unverified AWS
-   launch years; Oracle and Meta.
+2. ~~Azure~~, ~~GCP~~, ~~neoclouds~~, ~~Oracle~~, ~~Meta~~ — done. Remaining: citation pass
+   on unverified AWS launch years; label crowding in dense regional views.
 3. Capacity layer — CBRE / JLL metro reports, flagged as estimates with explicit `basis`.
 4. Daily intelligence digest (separate build).
 5. Digest feeds `pending-changes.json` so the map maintains itself.

@@ -1,0 +1,1263 @@
+{
+  "schema_version": "1.5",
+  "as_of": "2026-09-21",
+  "provider": {
+    "id": "meta",
+    "name": "Meta",
+    "short": "Meta",
+    "type": "captive",
+    "color": "#0866FF",
+    "parent": "Meta Platforms, Inc.",
+    "ticker": "META"
+  },
+  "sources": {
+    "meta-fleet": {
+      "title": "Meta data centers — global fleet",
+      "url": "https://datacenters.atmeta.com/all-locations/",
+      "accessed": "2026-09-21",
+      "tier": "A",
+      "note": "Meta's own list: location, announced investment and groundbreaking year for each site. No megawatts, no street addresses, no operational status."
+    },
+    "grid-headroom-map": {
+      "title": "Proxima Grid-Headroom Map (internal)",
+      "url": "https://brianchernauskas.github.io/grid-headroom-map/",
+      "accessed": "2026-08-01",
+      "tier": "B",
+      "note": "Expert-judgment constraint index, 1-5, anchored to cited queue and capacity figures."
+    }
+  },
+  "totals": {
+    "power": []
+  },
+  "regions": [],
+  "sites": [
+    {
+      "id": "meta-singapore",
+      "name": "Singapore",
+      "metro": "Singapore",
+      "country": "Singapore",
+      "geo": "Asia Pacific",
+      "coords": [
+        103.8195,
+        1.3571
+      ],
+      "coords_precision": "metro-centroid",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "investment": {
+        "text": "S$1.4 billion+",
+        "amount_bn": 1.4,
+        "currency": "SGD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2018,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-odense",
+      "name": "Odense",
+      "metro": "Odense",
+      "country": "Denmark",
+      "geo": "Europe",
+      "coords": [
+        10.3852,
+        55.3997
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "investment": {
+        "text": "DKK 10 billion+",
+        "amount_bn": 10,
+        "currency": "DKK",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2017,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-clonee",
+      "name": "Clonee",
+      "metro": "Clonee, County Meath",
+      "country": "Ireland",
+      "geo": "Europe",
+      "coords": [
+        -6.4404,
+        53.4104
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "investment": {
+        "text": "€1.4 billion",
+        "amount_bn": 1.4,
+        "currency": "EUR",
+        "basis": "announced investment",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2016,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-lulea",
+      "name": "Luleå",
+      "metro": "Luleå",
+      "country": "Sweden",
+      "geo": "Europe",
+      "coords": [
+        22.146,
+        65.5831
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "investment": {
+        "text": "SEK 8.7 billion+",
+        "amount_bn": 8.7,
+        "currency": "SEK",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2011,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-sturgeoncounty",
+      "name": "Sturgeon County",
+      "metro": "Sturgeon County, Alberta",
+      "country": "Canada",
+      "geo": "North America",
+      "coords": [
+        -113.5407,
+        53.8422
+      ],
+      "coords_precision": "region-centroid",
+      "coords_src": "meta-fleet",
+      "status": "announced",
+      "status_src": "meta-fleet",
+      "online": "groundbreaking 2026",
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "investment": {
+        "text": "CA$13 billion+",
+        "amount_bn": 13,
+        "currency": "CAD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2026,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-huntsville",
+      "name": "Huntsville",
+      "metro": "Huntsville, Alabama",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -86.5859,
+        34.7298
+      ],
+      "coords_precision": "metro-centroid",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "investment": {
+        "text": "$1.5 billion+",
+        "amount_bn": 1.5,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2018,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-montgomery",
+      "name": "Montgomery",
+      "metro": "Montgomery, Alabama",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -86.3091,
+        32.3777
+      ],
+      "coords_precision": "metro-centroid",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "investment": {
+        "text": "$1.5 billion+",
+        "amount_bn": 1.5,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2024,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-mesa",
+      "name": "Mesa",
+      "metro": "Mesa, Arizona",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -111.8315,
+        33.4151
+      ],
+      "coords_precision": "metro-centroid",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "SRP — Arizona (Phoenix)",
+        "constraint_index": 3.85,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$1 billion+",
+        "amount_bn": 1.0,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2021,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-stantonsprings",
+      "name": "Stanton Springs",
+      "metro": "Stanton Springs, Georgia",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -83.6971,
+        33.6005
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "investment": {
+        "text": "$2 billion+",
+        "amount_bn": 2.0,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2018,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-kuna",
+      "name": "Kuna",
+      "metro": "Kuna, Idaho",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -116.4201,
+        43.4918
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "Non-ISO West (ex-AZ)",
+        "constraint_index": 2.3,
+        "leverage": "Low",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$1.2 billion+",
+        "amount_bn": 1.2,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2022,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-dekalb",
+      "name": "DeKalb",
+      "metro": "DeKalb, Illinois",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -88.7504,
+        41.9295
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "PJM — rest of footprint",
+        "constraint_index": 3.35,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$1 billion+",
+        "amount_bn": 1.0,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2020,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-jeffersonville",
+      "name": "Jeffersonville",
+      "metro": "Jeffersonville, Indiana",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -85.7372,
+        38.277
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "MISO — Midwest",
+        "constraint_index": 3.35,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$800 million+",
+        "amount_bn": 0.8,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2024,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-lebanon",
+      "name": "Lebanon",
+      "metro": "Lebanon, Indiana",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -86.4692,
+        40.0484
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "announced",
+      "status_src": "meta-fleet",
+      "online": "groundbreaking 2026",
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "MISO — Midwest",
+        "constraint_index": 3.35,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$10 billion+",
+        "amount_bn": 10,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2026,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-altoona",
+      "name": "Altoona",
+      "metro": "Altoona, Iowa",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -93.4696,
+        41.6437
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "MISO — Midwest",
+        "constraint_index": 3.35,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$2.5 billion+",
+        "amount_bn": 2.5,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2013,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-richlandparish",
+      "name": "Richland Parish",
+      "metro": "Richland Parish, Louisiana",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -91.8106,
+        32.4197
+      ],
+      "coords_precision": "region-centroid",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "MISO — Midwest",
+        "constraint_index": 3.35,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$50 billion+",
+        "amount_bn": 50,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2024,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-rosemount",
+      "name": "Rosemount",
+      "metro": "Rosemount, Minnesota",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -93.1261,
+        44.7392
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "MISO — Midwest",
+        "constraint_index": 3.35,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$800 million+",
+        "amount_bn": 0.8,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2024,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-kansascity",
+      "name": "Kansas City",
+      "metro": "Kansas City, Missouri",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -94.5781,
+        39.1001
+      ],
+      "coords_precision": "metro-centroid",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "SPP — Central",
+        "constraint_index": 2.6,
+        "leverage": "Some",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$1.2 billion+",
+        "amount_bn": 1.2,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2022,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-sarpy",
+      "name": "Sarpy",
+      "metro": "Sarpy, Nebraska",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -96.1008,
+        41.0923
+      ],
+      "coords_precision": "region-centroid",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "SPP — Central",
+        "constraint_index": 2.6,
+        "leverage": "Some",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$2.5 billion+",
+        "amount_bn": 2.5,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2017,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-loslunas",
+      "name": "Los Lunas",
+      "metro": "Los Lunas, New Mexico",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -106.7613,
+        34.8142
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "Non-ISO West (ex-AZ)",
+        "constraint_index": 2.3,
+        "leverage": "Low",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$2.5 billion+",
+        "amount_bn": 2.5,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2016,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-forestcity",
+      "name": "Forest City",
+      "metro": "Forest City, North Carolina",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -81.8649,
+        35.3337
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "investment": {
+        "text": "$750 million+",
+        "amount_bn": 0.75,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2010,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-bowlinggreen",
+      "name": "Bowling Green",
+      "metro": "Bowling Green, Ohio",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -83.6513,
+        41.3748
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "PJM — rest of footprint",
+        "constraint_index": 3.35,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$800 million+",
+        "amount_bn": 0.8,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2025,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-newalbany",
+      "name": "New Albany",
+      "metro": "New Albany, Ohio",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -82.8088,
+        40.0812
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "PJM — rest of footprint",
+        "constraint_index": 3.35,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$1.5 billion+",
+        "amount_bn": 1.5,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2017,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-tulsa",
+      "name": "Tulsa",
+      "metro": "Tulsa, Oklahoma",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -95.9928,
+        36.1563
+      ],
+      "coords_precision": "metro-centroid",
+      "coords_src": "meta-fleet",
+      "status": "announced",
+      "status_src": "meta-fleet",
+      "online": "groundbreaking 2026",
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "SPP — Central",
+        "constraint_index": 2.6,
+        "leverage": "Some",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$1 billion+",
+        "amount_bn": 1.0,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2026,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-prineville",
+      "name": "Prineville",
+      "metro": "Prineville, Oregon",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -120.8464,
+        44.3035
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "Non-ISO West (ex-AZ)",
+        "constraint_index": 2.3,
+        "leverage": "Low",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$2 billion+",
+        "amount_bn": 2.0,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2010,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-aiken",
+      "name": "Aiken",
+      "metro": "Aiken, South Carolina",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -81.7196,
+        33.5604
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "investment": {
+        "text": "$800 million+",
+        "amount_bn": 0.8,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2024,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-gallatin",
+      "name": "Gallatin",
+      "metro": "Gallatin, Tennessee",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -86.4476,
+        36.3883
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "investment": {
+        "text": "$1.5 billion+",
+        "amount_bn": 1.5,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2020,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-elpaso",
+      "name": "El Paso",
+      "metro": "El Paso, Texas",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -106.487,
+        31.7601
+      ],
+      "coords_precision": "metro-centroid",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "Non-ISO West (ex-AZ)",
+        "constraint_index": 2.3,
+        "leverage": "Low",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$10 billion+",
+        "amount_bn": 10,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2025,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-fortworth",
+      "name": "Fort Worth",
+      "metro": "Fort Worth, Texas",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -97.3327,
+        32.7532
+      ],
+      "coords_precision": "metro-centroid",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "ERCOT — Texas",
+        "constraint_index": 3.9,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$1.5 billion+",
+        "amount_bn": 1.5,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2015,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-temple",
+      "name": "Temple",
+      "metro": "Temple, Texas",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -97.343,
+        31.0984
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "ERCOT — Texas",
+        "constraint_index": 3.9,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$1.2 billion",
+        "amount_bn": 1.2,
+        "currency": "USD",
+        "basis": "announced investment",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2022,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-eaglemountain",
+      "name": "Eagle Mountain",
+      "metro": "Eagle Mountain, Utah",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -112.012,
+        40.3093
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "Non-ISO West (ex-AZ)",
+        "constraint_index": 2.3,
+        "leverage": "Low",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$1.5 billion+",
+        "amount_bn": 1.5,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2018,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-henrico",
+      "name": "Henrico",
+      "metro": "Henrico, Virginia",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -77.3465,
+        37.5131
+      ],
+      "coords_precision": "region-centroid",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "PJM — Dominion / N. Virginia",
+        "constraint_index": 4.65,
+        "leverage": "High",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$1 billion+",
+        "amount_bn": 1.0,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2017,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-beaverdam",
+      "name": "Beaver Dam",
+      "metro": "Beaver Dam, Wisconsin",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -88.8373,
+        43.4578
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "MISO — Midwest",
+        "constraint_index": 3.35,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$1 billion+",
+        "amount_bn": 1.0,
+        "currency": "USD",
+        "basis": "announced investment, stated as a minimum",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2025,
+        "src": "meta-fleet"
+      }
+    },
+    {
+      "id": "meta-cheyenne",
+      "name": "Cheyenne",
+      "metro": "Cheyenne, Wyoming",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -104.8202,
+        41.14
+      ],
+      "coords_precision": "campus",
+      "coords_src": "meta-fleet",
+      "status": "listed",
+      "status_src": "meta-fleet",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "meta-fleet",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "Non-ISO West (ex-AZ)",
+        "constraint_index": 2.3,
+        "leverage": "Low",
+        "src": "grid-headroom-map"
+      },
+      "investment": {
+        "text": "$1.2 billion",
+        "amount_bn": 1.2,
+        "currency": "USD",
+        "basis": "announced investment",
+        "src": "meta-fleet"
+      },
+      "broke_ground": {
+        "year": 2024,
+        "src": "meta-fleet"
+      }
+    }
+  ],
+  "pipeline": [],
+  "provider_notes": [
+    "Captive operator: Meta builds only for its own use and sells no cloud capacity. It matters to buyers because it competes for the same power, grid interconnects and GPUs in the same markets.",
+    "Meta discloses dollars, not megawatts. Every site carries an announced investment and a groundbreaking year; none carries a power figure, so every Meta diamond is drawn hollow at minimum size. Richland Parish alone is stated at $50bn+.",
+    "Meta does not state which sites are operational. Status is 'listed' with the groundbreaking year, or 'announced' where groundbreaking is 2026.",
+    "Gigawatt figures for the Hyperion (Richland Parish) and Prometheus (New Albany) AI clusters have been stated publicly by Meta's CEO but were not reached in a primary source here, so they are not recorded."
+  ]
+}

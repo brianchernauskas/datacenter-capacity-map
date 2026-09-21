@@ -1,4 +1,4 @@
-# Data schema — v1.4
+# Data schema — v1.5
 
 One JSON file per provider, in `data/<provider>.json`. The map reads them all and merges.
 This file is the contract. **Fill the fields; do not invent fields, and do not change field names.**
@@ -23,7 +23,7 @@ Data Quality panel counts it in public.
 
 ```jsonc
 {
-  "schema_version": "1.4",
+  "schema_version": "1.5",
   "as_of": "YYYY-MM-DD",          // when this file was last refreshed
   "provider": { "id", "name", "short", "type", "color", "parent", "ticker" },
   "sources":  { "<source-id>": { "title", "url", "accessed", "tier", "note" } },
@@ -36,7 +36,10 @@ Data Quality panel counts it in public.
 }
 ```
 
-`provider.type` is one of `hyperscaler`, `neocloud`, `regional`, `colo`.
+`provider.type` is one of `hyperscaler`, `neocloud`, `captive`, `regional`, `colo`.
+`captive` means the operator builds only for its own use and sells no cloud capacity (Meta).
+A provider may carry **both** `regions[]` and `sites[]` — Oracle sells cloud regions and also
+operates OpenAI's Stargate build sites.
 
 `totals` is the provider's **own stated** headline figure, kept separately from the sum of
 the records. The page reconciles the two and shows the gap. Do not "fix" a gap by editing
@@ -91,6 +94,20 @@ their own register, and reconciled against fleet totals separately from regions.
 | `gpus` | `{count, model, src}` \| null | |
 | `anchor` | `{name, src}` \| null | Customer the capacity is pre-sold to, **only if the provider names them**. |
 | `grid`, `notes` | | As for regions. |
+
+Optional site fields added in v1.5, for operators that disclose money rather than power:
+
+| Field | Type | Notes |
+|---|---|---|
+| `investment` | `{text, amount_bn, currency, basis, src}` \| null | Exactly as stated ("$1.5 billion+"). Never converted between currencies. |
+| `broke_ground` | `{year, src}` \| null | Groundbreaking year as stated. |
+
+A site that appears in more than one company's disclosures is recorded **once**, under its
+developer, and the other roles go in `provider_notes`. Stargate Abilene is recorded under
+Crusoe; Oracle's file says so rather than adding a second point.
+
+Regions may also carry `realm` (Oracle's isolated realms, e.g. `OC19`). An `azs` of exactly 1
+with `azs_basis: exact` means one availability domain: no in-region zone redundancy.
 
 ### `power[]` — one entry per stated figure
 

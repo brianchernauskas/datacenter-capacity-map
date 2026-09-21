@@ -28,9 +28,10 @@ const ACCESS = {
 };
 
 const ZONE_STATE = {
-  zones:   { label: 'Has zones',        color: '#34D399' },
-  preview: { label: 'Zones in preview', color: '#FBBF24' },
-  none:    { label: 'No zones',         color: '#64748B' }
+  zones:   { label: 'Multi-zone (2+)',       color: '#34D399' },
+  single:  { label: 'Single zone / one AD',  color: '#FB923C' },
+  preview: { label: 'Zones in preview',      color: '#FBBF24' },
+  none:    { label: 'No zones',              color: '#64748B' }
 };
 
 const PRECISION = {
@@ -78,7 +79,8 @@ const potOf  = s => largest(s, POTENTIAL_STAGES);
 
 function zoneState(r) {
   if (r.azs_basis === 'preview') return 'preview';
-  return r.azs > 0 ? 'zones' : 'none';
+  // Oracle calls them availability domains; one AD means no in-region zone redundancy.
+  return r.azs >= 2 ? 'zones' : r.azs === 1 ? 'single' : 'none';
 }
 
 const COLOR_MODES = {
@@ -98,7 +100,7 @@ const COLOR_MODES = {
   },
   zones: {
     label: 'Zone support',
-    legend: 'Whether the region offers availability zones at all. A quarter of Azure regions do not.',
+    legend: 'In-region zone redundancy. A quarter of Azure regions have no zones; 50 of 55 Oracle regions have a single availability domain.',
     key: zoneState,
     scale: Object.fromEntries(Object.entries(ZONE_STATE).map(([k, v]) => [k, v.color])),
     names: Object.fromEntries(Object.entries(ZONE_STATE).map(([k, v]) => [k, v.label]))
@@ -134,6 +136,7 @@ function azLabel(r) {
   if (r.azs === 0) return '—';
   return r.azs_basis === 'minimum' ? r.azs + '+' : String(r.azs);
 }
+const statusText = s => s.status === 'listed' && s.broke_ground ? `Broke ground ${s.broke_ground.year}` : (STATUS[s.status] || s.status);
 const fmtMW = p => p ? `${p.mw.toLocaleString()} MW${p.basis === 'IT' ? ' IT' : ''}` : '—';
 
 const REGION_COLUMNS = [
@@ -152,11 +155,12 @@ const SITE_COLUMNS = [
   { key: 'name',     label: 'Site',          get: s => s.name,     sort: s => s.name,     type: 'text', swatch: true },
   { key: 'provider', label: 'Operator',      get: s => s._p.short, sort: s => s._p.short, type: 'text' },
   { key: 'metro',    label: 'Location',      get: s => s.metro,    sort: s => s.metro,    type: 'text' },
-  { key: 'status',   label: 'Status',        get: s => STATUS[s.status] || s.status, sort: s => s.status, type: 'text' },
+  { key: 'status',   label: 'Status',        get: s => statusText(s), sort: s => s.status, type: 'text' },
   { key: 'live',     label: 'Live MW',       get: s => fmtMW(liveOf(s)), sort: s => (liveOf(s) || {}).mw || 0, type: 'num' },
   { key: 'pipe',     label: 'Committed pipeline', get: s => fmtMW(pipeOf(s)), sort: s => (pipeOf(s) || {}).mw || 0, type: 'num' },
   { key: 'pot',      label: 'Full-build ceiling', get: s => fmtMW(potOf(s)), sort: s => (potOf(s) || {}).mw || 0, type: 'num' },
   { key: 'host',     label: 'Delivery',      get: s => [DELIVERY[s.delivery], s.host].filter(Boolean).join(' · ') || '—', sort: s => s.delivery || '', type: 'text' },
+  { key: 'invest',   label: 'Investment',    get: s => (s.investment && s.investment.text) || '—', sort: s => (s.investment && s.investment.currency === 'USD' ? s.investment.amount_bn : 0), type: 'num' },
   { key: 'anchor',   label: 'Anchor customer', get: s => (s.anchor && s.anchor.name) || '—', sort: s => (s.anchor && s.anchor.name) || '', type: 'text' },
   { key: 'leverage', label: 'Grid leverage', get: s => (s.grid && s.grid.leverage) || '—', sort: s => (s.grid && s.grid.constraint_index) || 0, type: 'text' }
 ];
@@ -236,21 +240,30 @@ function renderStats() {
     const anyFloor = rs.some(r => r.azs_basis === 'minimum');
     cards.push(
       { val: rs.length, label: 'Hyperscaler regions', note: scope },
-      { val: (anyFloor ? '≥ ' : '') + azSum, label: 'Availability zones',
+      { val: (anyFloor ? '≥ ' : '') + azSum, label: 'Zones / ADs',
         note: anyFloor ? 'a floor — Azure counts are not published' : 'exact per-region counts' },
       { val: rs.filter(r => r.access !== 'general').length, label: 'Gated regions', note: 'opt-in or restricted' });
   }
-  if (ss.length) {
-    const live = sumMW(ss.map(liveOf));
-    const pipe = sumMW(ss.map(pipeOf));
-    const anchored = ss.filter(s => s.anchor).length;
+  const cap = ss.filter(s => s._p.type === 'captive');
+  const build = ss.filter(s => s._p.type !== 'captive');
+  if (build.length) {
+    const live = sumMW(build.map(liveOf));
+    const pipe = sumMW(build.map(pipeOf));
+    const anchored = build.filter(s => s.anchor).length;
     cards.push(
-      { val: ss.length, label: 'Neocloud sites', note: `${ss.filter(s => liveOf(s)).length} with live MW disclosed` },
+      { val: build.length, label: 'AI build sites', note: `neoclouds and Oracle; ${build.filter(s => liveOf(s)).length} with live MW disclosed` },
       { val: (live.mixed ? '≈ ' : '') + live.total.toLocaleString(), label: 'MW live at named sites',
         note: live.mixed ? `mixed bases (${live.bases.join(' / ')}) — indicative` : 'fleet totals are larger — see Data quality' },
       { val: (pipe.mixed ? '≈ ' : '') + pipe.total.toLocaleString(), label: 'MW in named pipeline',
         note: 'contracted or planned; excludes full-build ceilings' },
       { val: anchored, label: 'Pre-sold sites', note: 'anchor customer disclosed' });
+  }
+  if (cap.length) {
+    const usd = cap.filter(s => s.investment && s.investment.currency === 'USD');
+    cards.push(
+      { val: cap.length, label: 'Captive sites', note: 'built for own use, not sold as cloud' },
+      { val: '$' + Math.round(usd.reduce((a, s) => a + s.investment.amount_bn, 0)) + 'bn+', label: 'Stated investment',
+        note: `${usd.length} USD-denominated sites; stated minimums; no MW published` });
   }
   if (!cards.length) cards.push({ val: 0, label: 'Nothing in scope', note: 'change the filters' });
 
@@ -267,11 +280,12 @@ function renderStats() {
 function renderControls() {
   const hyper = state.providers.filter(p => p.type === 'hyperscaler');
   const neo   = state.providers.filter(p => p.type === 'neocloud');
+  const captive = state.providers.filter(p => p.type === 'captive');
   const btn = (id, label, cls) =>
     `<button data-provider="${esc(id)}" aria-pressed="${id === state.provider}"${cls ? ` class="${cls}"` : ''}>${esc(label)}</button>`;
   $('seg-provider').innerHTML =
-    btn('all', 'All') + btn('hyperscaler', 'Hyperscalers', 'is-group') + btn('neocloud', 'Neoclouds', 'is-group') +
-    hyper.concat(neo).map(p => btn(p.id, p.short)).join('');
+    btn('all', 'All') + btn('hyperscaler', 'Hyperscalers', 'is-group') + btn('neocloud', 'Neoclouds', 'is-group') + btn('captive', 'Captive', 'is-group') +
+    hyper.concat(neo, captive).map(p => btn(p.id, p.short)).join('');
   $('seg-geo').innerHTML = GEOS.map(g =>
     `<button data-geo="${esc(g)}" aria-pressed="${g === state.geo}">${esc(g)}</button>`).join('');
   $('seg-color').innerHTML = Object.entries(COLOR_MODES).map(([k, m]) =>
@@ -414,7 +428,7 @@ function renderMap() {
     .map(p => p.short).join(' · ');
   const keys = [];
   if (regions.length) keys.push('● region, size = zones, hollow = no zones');
-  if (sites.length) keys.push('◆ neocloud site, size = MW, hollow = no live MW');
+  if (sites.length) keys.push('◆ site, size = disclosed MW, hollow = no live MW');
   $('map-caption').innerHTML = `${esc(provNames)}<br>${esc(keys.join(' · '))}`;
 
   renderLegend();
@@ -435,7 +449,7 @@ function renderLegend() {
       .map(k => `<div class="legend-row"><span class="legend-swatch" style="background:${m.scale[k]}"></span>${esc(m.names[k] || k)}</div>`).join('');
   }
   if (applicable.length < recs.length) {
-    const what = m.regionsNA ? 'Hyperscaler regions (n/a)' : 'Neocloud sites (n/a)';
+    const what = m.regionsNA ? 'Hyperscaler regions (n/a)' : 'Sites (n/a)';
     rows += `<div class="legend-row"><span class="legend-swatch" style="background:${NA_COLOR}"></span>${esc(what)}</div>`;
   }
 
@@ -487,6 +501,9 @@ function renderDetail() {
     fields = [
       { label: 'Status', val: STATUS[r.status] || r.status, src: r.status_src, hint: r.online },
       ...powerFields,
+      { label: 'Investment', val: r.investment && r.investment.text, src: r.investment && r.investment.src, missing: 'not disclosed',
+        hint: r.investment && r.investment.basis },
+      { label: 'Broke ground', val: r.broke_ground && r.broke_ground.year, src: r.broke_ground && r.broke_ground.src, missing: 'not disclosed' },
       { label: 'Delivery model', val: DELIVERY[r.delivery], src: r.delivery_src, missing: 'not stated' },
       { label: 'Building owner / partner', val: r.host, src: r.delivery_src, missing: r.delivery === 'self-built' ? 'operator-owned' : 'not stated' },
       { label: 'Anchor customer', val: r.anchor && r.anchor.name, src: r.anchor && r.anchor.src, missing: 'not disclosed' },
@@ -508,9 +525,10 @@ function renderDetail() {
     fields = [
       { label: 'Availability zones', val: zoneVal, src: r.azs_src,
         hint: r.azs_basis === 'minimum' ? 'Microsoft publishes zone support, not zone counts. Three is the documented minimum.'
+            : r.azs_basis === 'exact' && r.azs === 1 ? 'Exactly one — no in-region zone redundancy.'
             : r.azs_basis === 'exact' ? 'Exact count, published per region.' : null },
       { label: 'Launched',     val: r.launched, src: r.launched_src, missing: 'not published' },
-      { label: 'Partition',    val: PARTITIONS[r.partition] || r.partition, src: r.azs_src },
+      { label: 'Partition',    val: (PARTITIONS[r.partition] || r.partition) + (r.realm ? ` (realm ${r.realm})` : ''), src: r.azs_src },
       { label: 'Access',       val: ACCESS[r.access] || r.access, src: r.access_src },
       { label: 'Paired with',  val: r.paired_with_raw, src: r.paired_src, missing: 'no pair' },
       { label: 'Capacity (MW)', val: r.capacity_mw, src: null },
@@ -598,7 +616,8 @@ function renderDataQuality() {
     if (r.capacity_mw === null) counts.none++;
   });
   state.sites.forEach(s => {
-    [s.status_src, s.coords_src, s.delivery_src, s.anchor && s.anchor.src, s.gpus && s.gpus.src, s.grid && s.grid.src].forEach(tally);
+    [s.status_src, s.coords_src, s.delivery_src, s.anchor && s.anchor.src, s.gpus && s.gpus.src, s.grid && s.grid.src,
+     s.investment && s.investment.src, s.broke_ground && s.broke_ground.src].forEach(tally);
     (s.power || []).forEach(p => tally(p.src));
     if (!(s.power || []).length) counts.none++;
   });
@@ -613,8 +632,10 @@ function renderDataQuality() {
 
   const checks = [];
   state.providers.forEach(p => {
-    if (p.type === 'neocloud') return neocloudChecks(p, checks);
     const rs = state.regions.filter(r => r._p.id === p.id);
+    const hasSites = state.sites.some(s => s._p.id === p.id);
+    if (hasSites && !rs.length) return neocloudChecks(p, checks);
+    if (hasSites) (p._notes || []).forEach(n => checks.push({ ok: null, text: `${p.short}: ${n}` }));
     const stated = p._totals.regions;
     if (stated && stated.self_counted) {
       // Comparing our own count against our own count would always pass, which would
@@ -631,8 +652,10 @@ function renderDataQuality() {
         text: azSum === azStated.value
           ? `${p.short}: AZ count reconciles — ${azSum} against ${azStated.value} stated.`
           : `${p.short}: AZ count is short by ${azStated.value - azSum} — ${azSum} summed against ${azStated.value} stated. The gap sits in the ${rs.filter(r => r.azs_basis !== 'exact').length} regions whose AZ count is not published per region.` });
-    } else {
-      checks.push({ ok: null, text: `${p.short}: no AZ total can be reconciled. Microsoft publishes zone support but not per-region zone counts, so the ${azSum} shown is a floor across ${rs.filter(r => r.azs > 0).length} zone-enabled regions, not a count.` });
+    } else if (rs.some(r => r.azs_basis === 'minimum')) {
+      checks.push({ ok: null, text: `${p.short}: no AZ total can be reconciled. ${p.short} publishes zone support but not per-region zone counts, so the ${azSum} shown is a floor across ${rs.filter(r => r.azs > 0).length} zone-enabled regions, not a count.` });
+    } else if (rs.length) {
+      checks.push({ ok: null, text: `${p.short}: ${azSum} zones summed from exact per-region counts, with no published headline to reconcile against. ${rs.filter(r => r.azs === 1).length} of ${rs.length} regions have exactly one.` });
     }
     const dangling = rs.filter(r => r.paired_with_raw && !r.paired_with);
     if (dangling.length) {
@@ -697,7 +720,7 @@ function renderSources() {
     </div>`).join('');
 
   $('footer').innerHTML =
-    `Schema v1.4 · ${state.providers.length} providers · data as of ${esc([...new Set(state.providers.map(p => p._asOf))].join(' / '))} · ` +
+    `Schema v1.5 · ${state.providers.length} providers · data as of ${esc([...new Set(state.providers.map(p => p._asOf))].join(' / '))} · ` +
     `positions are metro or town centroids unless a record says facility; town and address coordinates geocoded via OpenStreetMap. ` +
     `Megawatts are shown exactly as each company states them — stage and basis differ between companies and are never silently summed.`;
 }
