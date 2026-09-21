@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Data Center Capacity Map</title>
-  <link rel="stylesheet" href="src/styles.css?v=20260918d" />
+  <link rel="stylesheet" href="src/styles.css?v=20260921a" />
 </head>
 <body>
 <script>(function(){
@@ -56,18 +56,35 @@
       <div class="map-legend" id="legend"></div>
     </div>
 
-    <div class="detail is-empty" id="detail">Select a region on the map or in the table to inspect its record and provenance.</div>
+    <div class="detail is-empty" id="detail">Select a region or site on the map or in a table to inspect its record and provenance.</div>
 
-    <div class="section-head">
-      <h2>Region register</h2>
-      <span class="sub" id="table-count"></span>
+    <div id="sites-section">
+      <div class="section-head">
+        <h2>Neocloud site register</h2>
+        <span class="sub" id="site-count"></span>
+      </div>
+      <div class="table-wrap">
+        <div class="table-scroll">
+          <table>
+            <thead><tr id="site-thead-row"></tr></thead>
+            <tbody id="site-tbody"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
-    <div class="table-wrap">
-      <div class="table-scroll">
-        <table id="table">
-          <thead><tr id="thead-row"></tr></thead>
-          <tbody id="tbody"></tbody>
-        </table>
+
+    <div id="regions-section">
+      <div class="section-head">
+        <h2>Hyperscaler region register</h2>
+        <span class="sub" id="table-count"></span>
+      </div>
+      <div class="table-wrap">
+        <div class="table-scroll">
+          <table id="table">
+            <thead><tr id="thead-row"></tr></thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -82,6 +99,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
-<script src="src/app.js?v=20260918d"></script>
+<script src="src/app.js?v=20260921a"></script>
 </body>
 </html>

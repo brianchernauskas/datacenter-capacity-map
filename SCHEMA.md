@@ -1,4 +1,4 @@
-# Data schema — v1.3
+# Data schema — v1.4
 
 One JSON file per provider, in `data/<provider>.json`. The map reads them all and merges.
 This file is the contract. **Fill the fields; do not invent fields, and do not change field names.**
@@ -23,12 +23,14 @@ Data Quality panel counts it in public.
 
 ```jsonc
 {
-  "schema_version": "1.3",
+  "schema_version": "1.4",
   "as_of": "YYYY-MM-DD",          // when this file was last refreshed
   "provider": { "id", "name", "short", "type", "color", "parent", "ticker" },
   "sources":  { "<source-id>": { "title", "url", "accessed", "tier", "note" } },
   "totals":   { "regions": {"value","src"}, "availability_zones": {...}, "announced_regions": {...} },
-  "regions":  [ ... ],
+  "regions":  [ ... ],          // hyperscalers
+  "sites":    [ ... ],          // neoclouds
+  "provider_notes": [ "..." ],  // optional; shown in Data quality
   "pipeline": [ ... ],
   "capex":    { "note", "series": [] }
 }
@@ -68,6 +70,55 @@ a record to make the arithmetic work — the gap is the finding.
 | `capacity_mw` | object \| null | See below. `null` until a citable source exists. |
 | `grid` | object \| null | `{ market, constraint_index, leverage, src }` — join to the Grid-Headroom Map. US only for now. |
 | `notes` | string | Optional caveat shown under the record. |
+
+## `sites[]` — neoclouds describe themselves differently
+
+Neoclouds publish **sites and megawatts**, not regions and zones. A neocloud file has an
+empty `regions[]` and a `sites[]` array. Sites are drawn as diamonds sized by MW, listed in
+their own register, and reconciled against fleet totals separately from regions.
+
+| Field | Type | Notes |
+|---|---|---|
+| `id`, `name`, `metro`, `country`, `geo` | | As for regions. |
+| `coords`, `coords_precision`, `coords_src`, `coords_note` | | As for regions. `region-centroid` added for state/county-only locations. |
+| `status` | enum | `operational`, `partial`, `under-construction`, `contracted`, `announced`, `listed`, `paused` |
+| `status_src` | source id | Status is the latest state the provider has **disclosed**. Never infer "live" from a past target date. |
+| `online` | string \| null | Timing exactly as stated ("first building energised mid-2027"). |
+| `delivery` | enum \| null | `self-built`, `leased`, `build-to-suit`, `colocation`, `joint-venture` |
+| `host` | string \| null | Building owner or JV partner (Applied Digital, Core Scientific, Aker…). |
+| `delivery_src` | source id | |
+| `power` | array | See below. Empty if no MW is published — never guess one. |
+| `gpus` | `{count, model, src}` \| null | |
+| `anchor` | `{name, src}` \| null | Customer the capacity is pre-sold to, **only if the provider names them**. |
+| `grid`, `notes` | | As for regions. |
+
+### `power[]` — one entry per stated figure
+
+```jsonc
+{ "stage": "connected", "mw": 100, "basis": "IT", "src": "apld-pf1", "as_of": "2025-11-24",
+  "note": "Building 1 of 3 energised" }
+```
+
+**Stages**, after Nebius's own definitions: `active` (consumed by IT), `connected`
+(delivered into the building), `contracted` (secured by contract), `planned` (announced
+build), `potential` (full-build ceiling), `stated` (a figure given with no stage).
+
+**Basis:** `IT` (critical IT load), `gross`, `generation` (on-site power plant), or
+`unspecified`. Most companies do not say. Record `unspecified` rather than assuming IT.
+
+Rules the page enforces, and that the data must support:
+- **Live** = `active` or `connected`. **Committed pipeline** = `contracted`, `planned`, `stated`.
+  **Ceilings** (`potential`) are shown per site but **never summed into a headline** — one
+  8 GW aspiration would otherwise dominate every total.
+- Any total mixing bases is prefixed `≈` and labelled as indicative.
+- Fleet totals go in `totals.power` (same entry shape). If they are forward-looking, set
+  `totals.power_kind: "target"` — the page then treats them as context, not a reconciliation.
+
+### Reconciling sites against the fleet
+
+The gap between a neocloud's reported fleet power and its named sites is the headline
+finding: it is how much of the company's capacity has **no public location**. CoreWeave
+reports 1.5 GW active; its named sites account for about 7% of it.
 
 ## `pipeline[]` — announced, not yet live
 
@@ -133,7 +184,11 @@ coarser positions otherwise. The point is that the map never renders a guess as 
 | `campus` | Known siting cluster, individual building unresolved | Dashed ring |
 | `metro-centroid` | Metro only, position indicative | Wide dotted ring |
 
-Where facility precision is actually available — **no provider checked so far reaches it**:
+Where facility precision is actually available. **One record reaches it:** CoreWeave Lancaster,
+whose street address was reported by local press (LancasterOnline, via REBusinessOnline) about
+the redevelopment of two named printing plants, and geocoded here. A citable address from
+reporting on a public-record fact qualifies; an address copied out of a compiled database
+does not. For the rest:
 
 - **Google** publishes its owned campuses at `datacenters.google/locations/`, but by
   **town only, with no street addresses**, and that set is not the same as the GCP region

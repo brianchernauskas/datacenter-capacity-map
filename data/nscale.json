@@ -1,0 +1,415 @@
+{
+  "schema_version": "1.4",
+  "as_of": "2026-09-21",
+  "provider": {
+    "id": "nscale",
+    "name": "Nscale",
+    "short": "Nscale",
+    "type": "neocloud",
+    "color": "#2DD4BF",
+    "parent": "Nscale (private)",
+    "ticker": null
+  },
+  "sources": {
+    "nscale-infra": {
+      "title": "Nscale — AI infrastructure (site list)",
+      "url": "https://www.nscale.com/ai-infrastructure",
+      "accessed": "2026-09-21",
+      "tier": "A",
+      "note": "Company's own site list: Glomfjord 30 MW operational (60 planned), Narvik 230 MW (+290), Loughton 90 MW, Ward County TX ~240 MW (1,200 planned, Ionic Digital JV), Sines GW-scale (Start Campus), Keflavik 4,600+ GPUs 2026, Monarch WV 1,350 MW phase 1 (8+ GW), partner-run sites."
+    },
+    "nscale-stargate": {
+      "title": "TIME, 3 Jun 2026: Inside Nscale's AI data center above the Arctic Circle",
+      "url": "https://time.com/article/2026/06/03/ai-norway-nscale-data-center/",
+      "accessed": "2026-09-21",
+      "tier": "B",
+      "note": "Secondary. Narvik is Stargate Norway, a 50/50 joint venture with Aker, targeting 100,000 NVIDIA GPUs by end of 2026."
+    },
+    "grid-headroom-map": {
+      "title": "Proxima Grid-Headroom Map (internal)",
+      "url": "https://brianchernauskas.github.io/grid-headroom-map/",
+      "accessed": "2026-08-01",
+      "tier": "B",
+      "note": "Expert-judgment constraint index, 1-5, anchored to cited queue and capacity figures."
+    }
+  },
+  "totals": {
+    "power": []
+  },
+  "regions": [],
+  "sites": [
+    {
+      "id": "nscale-glomfjord",
+      "name": "Glomfjord",
+      "metro": "Glomfjord",
+      "country": "Norway",
+      "geo": "Europe",
+      "coords": [
+        13.9478,
+        66.8126
+      ],
+      "coords_precision": "campus",
+      "coords_src": "nscale-infra",
+      "status": "operational",
+      "status_src": "nscale-infra",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "nscale-infra",
+      "power": [
+        {
+          "stage": "connected",
+          "mw": 30,
+          "basis": "unspecified",
+          "src": "nscale-infra",
+          "as_of": "2026-09-21",
+          "note": "operational"
+        },
+        {
+          "stage": "potential",
+          "mw": 60,
+          "basis": "unspecified",
+          "src": "nscale-infra",
+          "as_of": "2026-09-21"
+        }
+      ],
+      "gpus": null,
+      "anchor": null
+    },
+    {
+      "id": "nscale-narvik",
+      "name": "Stargate Norway",
+      "metro": "Narvik",
+      "country": "Norway",
+      "geo": "Europe",
+      "coords": [
+        17.4273,
+        68.4385
+      ],
+      "coords_precision": "metro-centroid",
+      "coords_src": "nscale-infra",
+      "coords_note": "Site is at Kvandal outside Narvik; placed at Narvik",
+      "status": "announced",
+      "status_src": "nscale-infra",
+      "online": null,
+      "delivery": "joint-venture",
+      "host": "Aker (50/50 JV)",
+      "delivery_src": "nscale-stargate",
+      "power": [
+        {
+          "stage": "planned",
+          "mw": 230,
+          "basis": "unspecified",
+          "src": "nscale-infra",
+          "as_of": "2026-09-21"
+        },
+        {
+          "stage": "potential",
+          "mw": 520,
+          "basis": "unspecified",
+          "src": "nscale-infra",
+          "as_of": "2026-09-21",
+          "note": "230 MW plus a 290 MW expansion"
+        }
+      ],
+      "gpus": null,
+      "anchor": {
+        "name": "OpenAI (Stargate)",
+        "src": "nscale-stargate"
+      }
+    },
+    {
+      "id": "nscale-loughton",
+      "name": "Loughton",
+      "metro": "Loughton, Essex",
+      "country": "United Kingdom",
+      "geo": "Europe",
+      "coords": [
+        0.0544,
+        51.6467
+      ],
+      "coords_precision": "campus",
+      "coords_src": "nscale-infra",
+      "status": "announced",
+      "status_src": "nscale-infra",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "nscale-infra",
+      "power": [
+        {
+          "stage": "potential",
+          "mw": 90,
+          "basis": "unspecified",
+          "src": "nscale-infra",
+          "as_of": "2026-09-21"
+        }
+      ],
+      "gpus": null,
+      "anchor": null
+    },
+    {
+      "id": "nscale-ward",
+      "name": "Ward County",
+      "metro": "Ward County, Texas",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -103.0781,
+        31.5008
+      ],
+      "coords_precision": "region-centroid",
+      "coords_src": "nscale-infra",
+      "status": "announced",
+      "status_src": "nscale-infra",
+      "online": null,
+      "delivery": "joint-venture",
+      "host": "Ionic Digital",
+      "delivery_src": "nscale-infra",
+      "power": [
+        {
+          "stage": "stated",
+          "mw": 240,
+          "basis": "unspecified",
+          "src": "nscale-infra",
+          "as_of": "2026-09-21",
+          "note": "~240 MW, stage not stated"
+        },
+        {
+          "stage": "potential",
+          "mw": 1200,
+          "basis": "unspecified",
+          "src": "nscale-infra",
+          "as_of": "2026-09-21"
+        }
+      ],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "ERCOT — Texas",
+        "constraint_index": 3.9,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      }
+    },
+    {
+      "id": "nscale-sines",
+      "name": "Sines",
+      "metro": "Sines",
+      "country": "Portugal",
+      "geo": "Europe",
+      "coords": [
+        -8.869,
+        37.9565
+      ],
+      "coords_precision": "campus",
+      "coords_src": "nscale-infra",
+      "status": "announced",
+      "status_src": "nscale-infra",
+      "online": null,
+      "delivery": "colocation",
+      "host": "Start Campus",
+      "delivery_src": "nscale-infra",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "notes": "'GW-scale' with no figure, so no MW is recorded."
+    },
+    {
+      "id": "nscale-keflavik",
+      "name": "Keflavík",
+      "metro": "Keflavík",
+      "country": "Iceland",
+      "geo": "Europe",
+      "coords": [
+        -22.5565,
+        63.9998
+      ],
+      "coords_precision": "campus",
+      "coords_src": "nscale-infra",
+      "status": "announced",
+      "status_src": "nscale-infra",
+      "online": "2026",
+      "delivery": null,
+      "host": null,
+      "delivery_src": null,
+      "power": [],
+      "gpus": {
+        "count": 4600,
+        "model": "(more than)",
+        "src": "nscale-infra"
+      },
+      "anchor": null
+    },
+    {
+      "id": "nscale-monarch",
+      "name": "Monarch Campus",
+      "metro": "West Virginia",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -80.8408,
+        38.4758
+      ],
+      "coords_precision": "region-centroid",
+      "coords_src": "nscale-infra",
+      "coords_note": "State only; placed at the West Virginia centroid",
+      "status": "announced",
+      "status_src": "nscale-infra",
+      "online": "early 2028",
+      "delivery": null,
+      "host": null,
+      "delivery_src": null,
+      "power": [
+        {
+          "stage": "planned",
+          "mw": 1350,
+          "basis": "unspecified",
+          "src": "nscale-infra",
+          "as_of": "2026-09-21",
+          "note": "phase 1"
+        },
+        {
+          "stage": "potential",
+          "mw": 8000,
+          "basis": "unspecified",
+          "src": "nscale-infra",
+          "as_of": "2026-09-21",
+          "note": "8+ GW total"
+        }
+      ],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "PJM — rest of footprint",
+        "constraint_index": 3.35,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      }
+    },
+    {
+      "id": "nscale-nc",
+      "name": "North Carolina (partner-run)",
+      "metro": "North Carolina",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -79.0393,
+        35.673
+      ],
+      "coords_precision": "region-centroid",
+      "coords_src": "nscale-infra",
+      "coords_note": "State only; placed at the North Carolina centroid",
+      "status": "announced",
+      "status_src": "nscale-infra",
+      "online": null,
+      "delivery": "colocation",
+      "host": null,
+      "delivery_src": "nscale-infra",
+      "power": [
+        {
+          "stage": "planned",
+          "mw": 40,
+          "basis": "unspecified",
+          "src": "nscale-infra",
+          "as_of": "2026-09-21",
+          "note": "expected by 2026"
+        }
+      ],
+      "gpus": null,
+      "anchor": null
+    },
+    {
+      "id": "nscale-stavanger",
+      "name": "Stavanger (partner-run)",
+      "metro": "Stavanger",
+      "country": "Norway",
+      "geo": "Europe",
+      "coords": [
+        5.7318,
+        58.97
+      ],
+      "coords_precision": "metro-centroid",
+      "coords_src": "nscale-infra",
+      "status": "listed",
+      "status_src": "nscale-infra",
+      "online": null,
+      "delivery": "colocation",
+      "host": null,
+      "delivery_src": "nscale-infra",
+      "power": [],
+      "gpus": null,
+      "anchor": null
+    },
+    {
+      "id": "nscale-oslo",
+      "name": "Oslo (partner-run)",
+      "metro": "Oslo",
+      "country": "Norway",
+      "geo": "Europe",
+      "coords": [
+        10.739,
+        59.9133
+      ],
+      "coords_precision": "metro-centroid",
+      "coords_src": "nscale-infra",
+      "status": "listed",
+      "status_src": "nscale-infra",
+      "online": null,
+      "delivery": "colocation",
+      "host": null,
+      "delivery_src": "nscale-infra",
+      "power": [],
+      "gpus": null,
+      "anchor": null
+    },
+    {
+      "id": "nscale-hayes",
+      "name": "Hayes (partner-run)",
+      "metro": "Hayes, London",
+      "country": "United Kingdom",
+      "geo": "Europe",
+      "coords": [
+        -0.4181,
+        51.5077
+      ],
+      "coords_precision": "campus",
+      "coords_src": "nscale-infra",
+      "status": "listed",
+      "status_src": "nscale-infra",
+      "online": null,
+      "delivery": "colocation",
+      "host": null,
+      "delivery_src": "nscale-infra",
+      "power": [],
+      "gpus": null,
+      "anchor": null
+    },
+    {
+      "id": "nscale-blonduos",
+      "name": "Blönduós (partner-run)",
+      "metro": "Blönduós",
+      "country": "Iceland",
+      "geo": "Europe",
+      "coords": [
+        -20.281,
+        65.6601
+      ],
+      "coords_precision": "campus",
+      "coords_src": "nscale-infra",
+      "status": "listed",
+      "status_src": "nscale-infra",
+      "online": null,
+      "delivery": "colocation",
+      "host": null,
+      "delivery_src": "nscale-infra",
+      "power": [],
+      "gpus": null,
+      "anchor": null
+    }
+  ],
+  "pipeline": [],
+  "provider_notes": [
+    "Partner-run sites are listed by Nscale without capacity figures."
+  ]
+}

@@ -38,20 +38,6 @@
       "accessed": "2026-09-18",
       "tier": "C",
       "note": "Placeholder provenance. Every field carrying this source id must be replaced with a cited value before publication."
-    },
-    "gcp-locations": {
-      "title": "Google Cloud data centre locations (official addresses)",
-      "url": "https://www.google.com/about/datacenters/locations/",
-      "accessed": "2026-09-18",
-      "tier": "A",
-      "note": "Google publishes facility addresses. Use for facility-precision coords when the GCP file is built."
-    },
-    "meta-datacenters": {
-      "title": "Meta data centre locations (official addresses)",
-      "url": "https://datacenters.atmeta.com/",
-      "accessed": "2026-09-18",
-      "tier": "A",
-      "note": "Meta publishes facility addresses. Use for facility-precision coords when the Meta file is built."
     }
   },
   "totals": {

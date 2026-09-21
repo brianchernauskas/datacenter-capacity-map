@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.4",
+  "as_of": "2026-09-21",
+  "provider": {
+    "id": "lambda",
+    "name": "Lambda",
+    "short": "Lambda",
+    "type": "neocloud",
+    "color": "#F0ABFC",
+    "parent": "Lambda, Inc. (private)",
+    "ticker": null
+  },
+  "sources": {
+    "lambda-kc": {
+      "title": "Missouri Department of Economic Development: Lambda to establish AI factory in Kansas City (28 Oct 2025)",
+      "url": "https://ded.mo.gov/press-room/lambda-establish-ai-factory-facility-kansas-city",
+      "accessed": "2026-09-21",
+      "tier": "A",
+      "note": "24 MW at launch in early 2026, potential to scale beyond 100 MW; more than 10,000 NVIDIA Blackwell Ultra GPUs; a single customer under a multi-year agreement. No street address."
+    },
+    "grid-headroom-map": {
+      "title": "Proxima Grid-Headroom Map (internal)",
+      "url": "https://brianchernauskas.github.io/grid-headroom-map/",
+      "accessed": "2026-08-01",
+      "tier": "B",
+      "note": "Expert-judgment constraint index, 1-5, anchored to cited queue and capacity figures."
+    }
+  },
+  "totals": {
+    "power": []
+  },
+  "regions": [],
+  "sites": [
+    {
+      "id": "lambda-kc",
+      "name": "Kansas City AI factory",
+      "metro": "Kansas City, Missouri",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -94.5781,
+        39.1001
+      ],
+      "coords_precision": "metro-centroid",
+      "coords_src": "lambda-kc",
+      "status": "announced",
+      "status_src": "lambda-kc",
+      "online": "launch stated for early 2026",
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "lambda-kc",
+      "power": [
+        {
+          "stage": "planned",
+          "mw": 24,
+          "basis": "unspecified",
+          "src": "lambda-kc",
+          "as_of": "2025-10-28",
+          "note": "at launch"
+        },
+        {
+          "stage": "potential",
+          "mw": 100,
+          "basis": "unspecified",
+          "src": "lambda-kc",
+          "as_of": "2025-10-28",
+          "note": "'more than 100 MW'"
+        }
+      ],
+      "gpus": {
+        "count": 10000,
+        "model": "NVIDIA Blackwell Ultra (more than)",
+        "src": "lambda-kc"
+      },
+      "anchor": {
+        "name": "Single undisclosed customer",
+        "src": "lambda-kc"
+      },
+      "grid": {
+        "market": "SPP — Central",
+        "constraint_index": 2.6,
+        "leverage": "Some",
+        "src": "grid-headroom-map"
+      },
+      "notes": "Retrofit of an existing 2009-built facility. A street address circulates in press but is not in the government release, so the site is placed at metro level."
+    }
+  ],
+  "pipeline": [],
+  "provider_notes": [
+    "Lambda also runs capacity in third-party colocation that is not individually disclosed."
+  ]
+}

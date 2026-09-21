@@ -144,6 +144,15 @@ main { max-width: 1320px; margin: 0 auto; padding: 24px; }
 .node-cross { stroke: currentColor; stroke-opacity: .75; stroke-width: 1; }
 /* Regions with no availability zones read as hollow, so zone coverage is visible at a glance. */
 .node-dot.is-hollow { fill: #0E1626; stroke: currentColor; stroke-width: 1.8; }
+.node-precision.is-region-centroid { stroke-opacity: .32; stroke-width: 1; stroke-dasharray: 1 4; }
+
+/* Neocloud sites: diamonds sized by MW. Hollow = no live MW disclosed. */
+.site-dot { fill: currentColor; stroke: #0E1626; stroke-width: 1.2; }
+.site-dot.is-hollow { fill: #0E1626; stroke: currentColor; stroke-width: 1.8; }
+.node.is-paused .site-dot { stroke-dasharray: 2 2; fill-opacity: .35; }
+.node.is-site.is-sel .site-dot { stroke: #fff; stroke-width: 2; }
+.dot-inline.is-diamond { border-radius: 1px; transform: rotate(45deg) scale(.85); }
+.seg button.is-group { font-style: italic; }
 .node.is-dim { opacity: .18; }
 .node.is-sel .node-dot { stroke: #fff; stroke-width: 2; }
 .node-label {
@@ -170,6 +179,7 @@ main { max-width: 1320px; margin: 0 auto; padding: 24px; }
 .legend-prec.is-metro-centroid { border-style: dotted; opacity: .7; }
 .legend-prec.is-campus { border-style: dashed; }
 .legend-prec.is-facility { border-style: solid; background: #8FA3C0; }
+.legend-prec.is-region-centroid { border-style: dotted; opacity: .45; }
 .legend-size { text-align: center; }
 .legend-size .ring { border: 1.5px solid #8FA3C0; border-radius: 50%; margin: 0 auto 3px; }
 

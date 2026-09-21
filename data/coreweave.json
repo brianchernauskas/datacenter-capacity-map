@@ -1,0 +1,207 @@
+{
+  "schema_version": "1.4",
+  "as_of": "2026-09-21",
+  "provider": {
+    "id": "coreweave",
+    "name": "CoreWeave",
+    "short": "CoreWeave",
+    "type": "neocloud",
+    "color": "#A78BFA",
+    "parent": "CoreWeave, Inc.",
+    "ticker": "CRWV"
+  },
+  "sources": {
+    "cw-q2-2026": {
+      "title": "CoreWeave reports second quarter 2026 results",
+      "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx",
+      "accessed": "2026-09-21",
+      "tier": "A",
+      "note": "Fleet totals: active power ~1.5 GW, contracted power ~3.7 GW, as of 30 June 2026. Names no individual sites. Basis (IT vs gross) not stated."
+    },
+    "cw-lancaster": {
+      "title": "CoreWeave announces multi-billion dollar commitment in Pennsylvania (15 Jul 2025)",
+      "url": "https://investors.coreweave.com/news/news-details/2025/CoreWeave-Announces-Multi-Billion-Dollar-Commitment-to-AI-Infrastructure-in-Pennsylvania/default.aspx",
+      "accessed": "2026-09-21",
+      "tier": "A",
+      "note": "Lancaster: initial 100 MW of IT capacity, potential to scale to 300 MW; co-developed by Chirisa Technology Parks and Machine Investment Group. Town only, no address."
+    },
+    "cw-lancaster-addr": {
+      "title": "REBusinessOnline, 16 Jul 2025, citing LancasterOnline",
+      "url": "https://rebusinessonline.com/coreweave-to-invest-6b-for-ai-based-data-center-in-lancaster-pennsylvania/",
+      "accessed": "2026-09-21",
+      "tier": "A",
+      "note": "Street addresses 216 Greenfield Road and 1375 Harrisburg Pike (former LSC / R.R. Donnelley printing plants). Coordinates geocoded from the address via OpenStreetMap."
+    },
+    "apld-pf1": {
+      "title": "Applied Digital: Phase II ready for service at Polaris Forge 1 (24 Nov 2025)",
+      "url": "https://ir.applieddigital.com/news-events/press-releases/detail/137/applied-digital-completes-phase-ii-ready-for-service-at",
+      "accessed": "2026-09-21",
+      "tier": "A",
+      "note": "100 MW of critical IT load operational at Building 1, the first of three contracted buildings; part of a 400 MW fully contracted deployment for CoreWeave."
+    },
+    "corz-denton": {
+      "title": "Core Scientific and CoreWeave announce $1.2B expansion at Denton, TX (26 Feb 2025)",
+      "url": "https://investors.corescientific.com/news-events/press-releases/detail/110/core-scientific-and-coreweave-announce-1-2-billion-expansion-at-denton-tx-site",
+      "accessed": "2026-09-21",
+      "tier": "A",
+      "note": "Denton full critical IT load ~260 MW; CoreWeave total contracted with Core Scientific ~590 MW across six sites. Only Denton is itemised."
+    },
+    "grid-headroom-map": {
+      "title": "Proxima Grid-Headroom Map (internal)",
+      "url": "https://brianchernauskas.github.io/grid-headroom-map/",
+      "accessed": "2026-08-01",
+      "tier": "B",
+      "note": "Expert-judgment constraint index, 1-5, anchored to cited queue and capacity figures."
+    }
+  },
+  "totals": {
+    "power": [
+      {
+        "stage": "active",
+        "mw": 1500,
+        "basis": "unspecified",
+        "src": "cw-q2-2026",
+        "as_of": "2026-06-30",
+        "note": "reported as 1.5 GW"
+      },
+      {
+        "stage": "contracted",
+        "mw": 3700,
+        "basis": "unspecified",
+        "src": "cw-q2-2026",
+        "as_of": "2026-06-30",
+        "note": "reported as approximately 3.7 GW"
+      }
+    ]
+  },
+  "regions": [],
+  "sites": [
+    {
+      "id": "cw-lancaster",
+      "name": "Lancaster",
+      "metro": "Lancaster, Pennsylvania",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -76.2561,
+        40.0487
+      ],
+      "coords_precision": "facility",
+      "coords_src": "cw-lancaster-addr",
+      "coords_note": "216 Greenfield Road, East Lampeter Township",
+      "status": "announced",
+      "status_src": "cw-lancaster",
+      "online": null,
+      "delivery": "build-to-suit",
+      "host": "Chirisa Technology Parks / Machine Investment Group",
+      "delivery_src": "cw-lancaster",
+      "power": [
+        {
+          "stage": "planned",
+          "mw": 100,
+          "basis": "IT",
+          "src": "cw-lancaster",
+          "as_of": "2025-07-15",
+          "note": "initial phase"
+        },
+        {
+          "stage": "potential",
+          "mw": 300,
+          "basis": "unspecified",
+          "src": "cw-lancaster",
+          "as_of": "2025-07-15",
+          "note": "stated scale-up ceiling"
+        }
+      ],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "PJM — rest of footprint",
+        "constraint_index": 3.35,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      }
+    },
+    {
+      "id": "cw-ellendale",
+      "name": "Polaris Forge 1",
+      "metro": "Ellendale, North Dakota",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -98.527,
+        46.0027
+      ],
+      "coords_precision": "campus",
+      "coords_src": "apld-pf1",
+      "status": "partial",
+      "status_src": "apld-pf1",
+      "online": null,
+      "delivery": "leased",
+      "host": "Applied Digital",
+      "delivery_src": "apld-pf1",
+      "power": [
+        {
+          "stage": "connected",
+          "mw": 100,
+          "basis": "IT",
+          "src": "apld-pf1",
+          "as_of": "2025-11-24",
+          "note": "Building 1 of 3 energised"
+        },
+        {
+          "stage": "contracted",
+          "mw": 400,
+          "basis": "unspecified",
+          "src": "apld-pf1",
+          "as_of": "2025-11-24",
+          "note": "three buildings, long-term leases"
+        }
+      ],
+      "gpus": null,
+      "anchor": null
+    },
+    {
+      "id": "cw-denton",
+      "name": "Denton",
+      "metro": "Denton, Texas",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -97.1331,
+        33.2148
+      ],
+      "coords_precision": "campus",
+      "coords_src": "corz-denton",
+      "status": "contracted",
+      "status_src": "corz-denton",
+      "online": null,
+      "delivery": "leased",
+      "host": "Core Scientific",
+      "delivery_src": "corz-denton",
+      "power": [
+        {
+          "stage": "contracted",
+          "mw": 260,
+          "basis": "IT",
+          "src": "corz-denton",
+          "as_of": "2025-02-26",
+          "note": "full critical IT load, approximately"
+        }
+      ],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "ERCOT — Texas",
+        "constraint_index": 3.9,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      }
+    }
+  ],
+  "pipeline": [],
+  "provider_notes": [
+    "CoreWeave's Q2 2026 release names no individual sites. Every site here comes from a landlord's or a separate CoreWeave announcement.",
+    "Core Scientific states ~590 MW contracted for CoreWeave across six sites but itemises only Denton (~260 MW). The other five sites and their split are not in the primary source, so they are not recorded. A widely repeated five-site breakdown does not match Core Scientific's own six-site statement and was rejected."
+  ]
+}

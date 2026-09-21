@@ -3,8 +3,8 @@
 Interactive global and regional view of hyperscaler and neocloud data centre footprint —
 what is live, where, and what it means for buyer leverage.
 
-**Status: step 2 of 5 in progress.** Three providers (AWS, Azure, GCP) — 148 regions,
-structural data only, full provenance plumbing.
+**Status: step 2 of 5 in progress.** Nine providers — three hyperscalers (148 regions) and
+six neoclouds (34 sites) — structural data and disclosed megawatts, full provenance plumbing.
 
 ## What is here
 
@@ -17,6 +17,7 @@ structural data only, full provenance plumbing.
 | `data/aws.json` | 39 AWS regions, sourced |
 | `data/azure.json` | 66 Azure regions, sourced |
 | `data/gcp.json` | 43 GCP regions, sourced |
+| `data/{coreweave,nebius,iren,crusoe,lambda,nscale}.json` | 34 neocloud sites with disclosed MW, sourced |
 | `SCHEMA.md` | The contract every provider file must satisfy |
 
 Served locally on port 3120 (`dc-capacity-map` in the workspace `.claude/launch.json`).
@@ -66,6 +67,34 @@ it publishes one thing the others do not:
   Osaka and Montréal run their three zones across only one or two physical data centres
   and are expanding. Those four carry a note saying so.
 
+## What the neoclouds forced into the schema
+
+Neoclouds do not have regions or zones. They have **sites and megawatts**, and each company
+discloses them differently — which is itself the most useful thing the map shows:
+
+| Company | Discloses |
+|---|---|
+| CoreWeave (public) | Fleet totals only — 1.5 GW active, ~3.7 GW contracted. **Names no sites.** |
+| Nebius (public) | Year-end targets plus site-by-site announcements |
+| IREN (public) | Every site by name in its filing, plus forward IT-capacity targets |
+| Crusoe, Lambda, Nscale (private) | Individual site announcements; no fleet totals |
+
+So v1.4 adds `sites[]`, each with a list of **power figures that carry their own stage**
+(active / connected / contracted / planned / potential — Nebius's vocabulary) **and basis**
+(IT / gross / generation / unspecified). Full-build ceilings are shown per site but never
+summed into a headline; totals across bases are marked `≈`.
+
+- **CoreWeave's named sites account for 7% of the 1.5 GW it reports active, and 21% of its
+  3.7 GW contracted.** The rest has no public location. For a buyer, that is the point:
+  most of the capacity you are being sold cannot be sited from public information.
+- **Five of 34 sites are pre-sold** to a named anchor — Microsoft (three), OpenAI's Stargate,
+  and an undisclosed single customer.
+- **A widely repeated CoreWeave / Core Scientific site breakdown was rejected.** Core
+  Scientific's own release says ~590 MW across *six* sites and itemises only Denton. The
+  circulating five-site split does not match it.
+- **First facility-precision record in the dataset:** CoreWeave Lancaster, from a
+  press-reported street address.
+
 ## What the reconciliation found
 
 - **GCP reconciles exactly on both counts** — 43 regions and 130 zones against Google's
@@ -93,8 +122,8 @@ separate them.
 ## Roadmap
 
 1. ~~Schema + AWS by hand~~ — done.
-2. ~~Azure~~, ~~GCP~~ — done. Remaining: citation pass on unverified launch years, then
-   Oracle, Meta and the neoclouds against the frozen schema.
+2. ~~Azure~~, ~~GCP~~, ~~neoclouds~~ — done. Remaining: citation pass on unverified AWS
+   launch years; Oracle and Meta.
 3. Capacity layer — CBRE / JLL metro reports, flagged as estimates with explicit `basis`.
 4. Daily intelligence digest (separate build).
 5. Digest feeds `pending-changes.json` so the map maintains itself.
@@ -102,10 +131,12 @@ separate them.
 ## Caveats
 
 - Coordinate precision is **declared per record** (`facility` / `campus` / `metro-centroid`)
-  and drawn as a positional-uncertainty ring. **Still no facility-level records.** Google
-  publishes its owned campuses by town only, with no street addresses, and that set is not
-  the same as the GCP region list — so GCP contributes 10 `campus` records, not `facility`.
-  AWS and Microsoft publish neither.
+  and drawn as a positional-uncertainty ring. **One facility-level record** (CoreWeave
+  Lancaster). Google publishes owned campuses by town only, so GCP contributes 10 `campus`
+  records; AWS and Microsoft publish neither.
+- Neocloud MW are **as each company states them**, on differing stages and bases, and
+  mostly as of the last announcement rather than today. Several announcements are over a
+  year old; `as_of` on every figure says how old.
 - Microsoft publishes **no physical location at all** for the six China regions; those
   coordinates are unverified placements and flagged as such on each record.
 - AWS launch years are unverified until the citation pass. Azure launch years are not

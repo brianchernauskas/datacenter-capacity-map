@@ -3,6 +3,12 @@
   "providers": [
     "aws",
     "azure",
-    "gcp"
+    "gcp",
+    "coreweave",
+    "nebius",
+    "iren",
+    "crusoe",
+    "lambda",
+    "nscale"
   ]
 }

@@ -1,0 +1,312 @@
+{
+  "schema_version": "1.4",
+  "as_of": "2026-09-21",
+  "provider": {
+    "id": "nebius",
+    "name": "Nebius",
+    "short": "Nebius",
+    "type": "neocloud",
+    "color": "#BEF264",
+    "parent": "Nebius Group N.V.",
+    "ticker": "NBIS"
+  },
+  "sources": {
+    "nb-lappeenranta": {
+      "title": "Nebius to construct 310 MW AI factory in Finland (31 Mar 2026)",
+      "url": "https://nebius.com/newsroom/nebius-to-construct-310-mw-ai-factory-in-finland",
+      "accessed": "2026-09-21",
+      "tier": "A",
+      "note": "Lappeenranta 310 MW, self-built, first capacity 2027. Also states Mantsala 75 MW, Lille 240 MW under construction, Independence MO 1,000+ MW recently approved."
+    },
+    "nb-vineland": {
+      "title": "Nebius adds up to 300 MW capacity at new data center in New Jersey",
+      "url": "https://nebius.com/newsroom/nebius-accelerates-us-expansion-adding-up-to-300-mw-capacity-at-new-data-center-in-new-jersey",
+      "accessed": "2026-09-21",
+      "tier": "A",
+      "note": "Vineland, NJ: phased development expandable to 300 MW."
+    },
+    "nb-msft": {
+      "title": "Nebius announces multi-billion dollar agreement with Microsoft (8 Sep 2025)",
+      "url": "https://nebius.com/newsroom/nebius-announces-multi-billion-dollar-agreement-with-microsoft-for-ai-infrastructure",
+      "accessed": "2026-09-21",
+      "tier": "A",
+      "note": "Dedicated capacity to Microsoft from Vineland, New Jersey. MW not disclosed."
+    },
+    "nb-us-az": {
+      "title": "Nebius opens the first availability zone in the US",
+      "url": "https://nebius.com/blog/posts/nebius-opens-first-availability-zone-in-us",
+      "accessed": "2026-09-21",
+      "tier": "A",
+      "note": "Kansas City colocation deployment."
+    },
+    "nb-iceland": {
+      "title": "Nebius: 300 MW New Jersey region and expanding to Iceland",
+      "url": "https://nebius.com/blog/posts/300-mw-new-jersey-and-iceland-regions",
+      "accessed": "2026-09-21",
+      "tier": "A",
+      "note": "Keflavik colocation, expected fully operational by end of Q1 2025."
+    },
+    "nb-q2-guidance": {
+      "title": "Motley Fool / Yahoo Finance coverage of Nebius Q2 2026 (Aug 2026)",
+      "url": "https://www.fool.com/investing/2026/08/16/nebius-contracted-power-guidance-continues-to-surg/",
+      "accessed": "2026-09-21",
+      "tier": "B",
+      "note": "Secondary. Year-end 2026 targets: 5 GW contracted power, 800 MW-1 GW connected. The primary letter is a PDF that could not be text-extracted here."
+    },
+    "grid-headroom-map": {
+      "title": "Proxima Grid-Headroom Map (internal)",
+      "url": "https://brianchernauskas.github.io/grid-headroom-map/",
+      "accessed": "2026-08-01",
+      "tier": "B",
+      "note": "Expert-judgment constraint index, 1-5, anchored to cited queue and capacity figures."
+    }
+  },
+  "totals": {
+    "power": [
+      {
+        "stage": "contracted",
+        "mw": 5000,
+        "basis": "unspecified",
+        "src": "nb-q2-guidance",
+        "as_of": "2026-12-31",
+        "note": "year-end 2026 TARGET, not actual"
+      },
+      {
+        "stage": "connected",
+        "mw": 800,
+        "basis": "unspecified",
+        "src": "nb-q2-guidance",
+        "as_of": "2026-12-31",
+        "note": "year-end 2026 TARGET, 800 MW to 1 GW"
+      }
+    ],
+    "power_kind": "target"
+  },
+  "regions": [],
+  "sites": [
+    {
+      "id": "nb-mantsala",
+      "name": "Mäntsälä",
+      "metro": "Mäntsälä",
+      "country": "Finland",
+      "geo": "Europe",
+      "coords": [
+        25.3159,
+        60.6353
+      ],
+      "coords_precision": "campus",
+      "coords_src": "nb-lappeenranta",
+      "status": "operational",
+      "status_src": "nb-lappeenranta",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "nb-lappeenranta",
+      "power": [
+        {
+          "stage": "connected",
+          "mw": 75,
+          "basis": "unspecified",
+          "src": "nb-lappeenranta",
+          "as_of": "2026-03-31",
+          "note": "expansion to 75 MW completed"
+        }
+      ],
+      "gpus": null,
+      "anchor": null
+    },
+    {
+      "id": "nb-lappeenranta",
+      "name": "Lappeenranta",
+      "metro": "Lappeenranta",
+      "country": "Finland",
+      "geo": "Europe",
+      "coords": [
+        28.1862,
+        61.0583
+      ],
+      "coords_precision": "campus",
+      "coords_src": "nb-lappeenranta",
+      "status": "announced",
+      "status_src": "nb-lappeenranta",
+      "online": "first capacity 2027",
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "nb-lappeenranta",
+      "power": [
+        {
+          "stage": "planned",
+          "mw": 310,
+          "basis": "unspecified",
+          "src": "nb-lappeenranta",
+          "as_of": "2026-03-31"
+        }
+      ],
+      "gpus": null,
+      "anchor": null
+    },
+    {
+      "id": "nb-lille",
+      "name": "Lille",
+      "metro": "Lille",
+      "country": "France",
+      "geo": "Europe",
+      "coords": [
+        3.0635,
+        50.6366
+      ],
+      "coords_precision": "metro-centroid",
+      "coords_src": "nb-lappeenranta",
+      "status": "under-construction",
+      "status_src": "nb-lappeenranta",
+      "online": null,
+      "delivery": null,
+      "host": null,
+      "delivery_src": null,
+      "power": [
+        {
+          "stage": "planned",
+          "mw": 240,
+          "basis": "unspecified",
+          "src": "nb-lappeenranta",
+          "as_of": "2026-03-31"
+        }
+      ],
+      "gpus": null,
+      "anchor": null
+    },
+    {
+      "id": "nb-independence",
+      "name": "Independence",
+      "metro": "Independence, Missouri",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -94.4138,
+        39.0925
+      ],
+      "coords_precision": "campus",
+      "coords_src": "nb-lappeenranta",
+      "status": "announced",
+      "status_src": "nb-lappeenranta",
+      "online": null,
+      "delivery": null,
+      "host": null,
+      "delivery_src": null,
+      "power": [
+        {
+          "stage": "potential",
+          "mw": 1000,
+          "basis": "unspecified",
+          "src": "nb-lappeenranta",
+          "as_of": "2026-03-31",
+          "note": "1,000+ MW, 'gigawatt-scale', recently approved"
+        }
+      ],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "SPP — Central",
+        "constraint_index": 2.6,
+        "leverage": "Some",
+        "src": "grid-headroom-map"
+      }
+    },
+    {
+      "id": "nb-vineland",
+      "name": "Vineland",
+      "metro": "Vineland, New Jersey",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -75.0254,
+        39.4863
+      ],
+      "coords_precision": "campus",
+      "coords_src": "nb-vineland",
+      "status": "announced",
+      "status_src": "nb-vineland",
+      "online": "Microsoft deliveries stated to start late 2025",
+      "delivery": null,
+      "host": null,
+      "delivery_src": null,
+      "power": [
+        {
+          "stage": "potential",
+          "mw": 300,
+          "basis": "unspecified",
+          "src": "nb-vineland",
+          "as_of": "2025-06",
+          "note": "phased, 'up to 300 MW'"
+        }
+      ],
+      "gpus": null,
+      "anchor": {
+        "name": "Microsoft",
+        "src": "nb-msft"
+      },
+      "grid": {
+        "market": "PJM — rest of footprint",
+        "constraint_index": 3.35,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      },
+      "notes": "Live MW at Vineland has not been disclosed; status is the latest the provider has stated."
+    },
+    {
+      "id": "nb-kansascity",
+      "name": "Kansas City",
+      "metro": "Kansas City, Missouri",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -94.5781,
+        39.1001
+      ],
+      "coords_precision": "metro-centroid",
+      "coords_src": "nb-us-az",
+      "status": "operational",
+      "status_src": "nb-us-az",
+      "online": null,
+      "delivery": "colocation",
+      "host": null,
+      "delivery_src": "nb-us-az",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "SPP — Central",
+        "constraint_index": 2.6,
+        "leverage": "Some",
+        "src": "grid-headroom-map"
+      }
+    },
+    {
+      "id": "nb-keflavik",
+      "name": "Keflavík",
+      "metro": "Keflavík",
+      "country": "Iceland",
+      "geo": "Europe",
+      "coords": [
+        -22.5565,
+        63.9998
+      ],
+      "coords_precision": "campus",
+      "coords_src": "nb-iceland",
+      "status": "announced",
+      "status_src": "nb-iceland",
+      "online": "stated: fully operational by end of Q1 2025",
+      "delivery": "colocation",
+      "host": null,
+      "delivery_src": "nb-iceland",
+      "power": [],
+      "gpus": null,
+      "anchor": null
+    }
+  ],
+  "pipeline": [],
+  "provider_notes": [
+    "Nebius defines three power stages — contracted, connected and active. This schema adopts that vocabulary for every neocloud.",
+    "Q2 2026 coverage also reports new deployments with Vantage in Wales and Greenergy in Estonia and a second self-built building at Mäntsälä. Not recorded: no primary source reached."
+  ]
+}

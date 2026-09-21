@@ -1,0 +1,287 @@
+{
+  "schema_version": "1.4",
+  "as_of": "2026-09-21",
+  "provider": {
+    "id": "iren",
+    "name": "IREN",
+    "short": "IREN",
+    "type": "neocloud",
+    "color": "#FB7185",
+    "parent": "IREN Limited",
+    "ticker": "IREN"
+  },
+  "sources": {
+    "iren-fy26": {
+      "title": "IREN reports FY26 results — Form 8-K (Aug 2026)",
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000051/irenreportsfy26results.htm",
+      "accessed": "2026-09-21",
+      "tier": "A",
+      "note": "Childress: first of four 50 MW (IT) liquid-cooled deployments delivered to Microsoft; Horizons 3-4 Q4 2026; $3.4bn NVIDIA contract within 60 MW of existing Childress data centres. Targets 0.3 GW (IT) 2026, 0.8 GW (IT) 2027, >5 GW pipeline. As of 26 Aug 2026."
+    },
+    "grid-headroom-map": {
+      "title": "Proxima Grid-Headroom Map (internal)",
+      "url": "https://brianchernauskas.github.io/grid-headroom-map/",
+      "accessed": "2026-08-01",
+      "tier": "B",
+      "note": "Expert-judgment constraint index, 1-5, anchored to cited queue and capacity figures."
+    }
+  },
+  "totals": {
+    "power": [
+      {
+        "stage": "planned",
+        "mw": 300,
+        "basis": "IT",
+        "src": "iren-fy26",
+        "as_of": "2026-12-31",
+        "note": "cumulative IT capacity TARGET for 2026"
+      },
+      {
+        "stage": "planned",
+        "mw": 800,
+        "basis": "IT",
+        "src": "iren-fy26",
+        "as_of": "2027-12-31",
+        "note": "cumulative IT capacity TARGET for 2027"
+      },
+      {
+        "stage": "potential",
+        "mw": 5000,
+        "basis": "unspecified",
+        "src": "iren-fy26",
+        "as_of": "2026-08-26",
+        "note": ">5 GW development pipeline"
+      }
+    ],
+    "power_kind": "target"
+  },
+  "regions": [],
+  "sites": [
+    {
+      "id": "iren-childress",
+      "name": "Childress",
+      "metro": "Childress, Texas",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -100.204,
+        34.4265
+      ],
+      "coords_precision": "campus",
+      "coords_src": "iren-fy26",
+      "status": "partial",
+      "status_src": "iren-fy26",
+      "online": "Horizons 3 and 4 in Q4 2026",
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "iren-fy26",
+      "power": [
+        {
+          "stage": "connected",
+          "mw": 50,
+          "basis": "IT",
+          "src": "iren-fy26",
+          "as_of": "2026-08-26",
+          "note": "Horizon 1 delivered to Microsoft"
+        },
+        {
+          "stage": "planned",
+          "mw": 200,
+          "basis": "IT",
+          "src": "iren-fy26",
+          "as_of": "2026-08-26",
+          "note": "four 50 MW (IT) Horizons"
+        }
+      ],
+      "gpus": {
+        "count": null,
+        "model": "NVIDIA GB300 NVL72 (Exemplar Cloud status)",
+        "src": "iren-fy26"
+      },
+      "anchor": {
+        "name": "Microsoft",
+        "src": "iren-fy26"
+      },
+      "grid": {
+        "market": "ERCOT — Texas",
+        "constraint_index": 3.9,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      },
+      "notes": "Separate $3.4bn, 5-year NVIDIA contract for air-cooled Blackwell GPUs within 60 MW of existing Childress data centres, ramping from early 2027."
+    },
+    {
+      "id": "iren-sweetwater",
+      "name": "Sweetwater",
+      "metro": "Sweetwater, Texas",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -100.4059,
+        32.471
+      ],
+      "coords_precision": "campus",
+      "coords_src": "iren-fy26",
+      "status": "announced",
+      "status_src": "iren-fy26",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "iren-fy26",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "ERCOT — Texas",
+        "constraint_index": 3.9,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      },
+      "notes": "Development progressing. No MW figure in the FY26 release."
+    },
+    {
+      "id": "iren-mackenzie",
+      "name": "Mackenzie",
+      "metro": "Mackenzie, British Columbia",
+      "country": "Canada",
+      "geo": "North America",
+      "coords": [
+        -123.0926,
+        55.3244
+      ],
+      "coords_precision": "campus",
+      "coords_src": "iren-fy26",
+      "status": "operational",
+      "status_src": "iren-fy26",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "iren-fy26",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "notes": "Existing site; air-cooled expansion financed by a $2.4bn Blue Owl-led facility. No MW figure in the FY26 release."
+    },
+    {
+      "id": "iren-canalflats",
+      "name": "Canal Flats",
+      "metro": "Canal Flats, British Columbia",
+      "country": "Canada",
+      "geo": "North America",
+      "coords": [
+        -115.8077,
+        50.1597
+      ],
+      "coords_precision": "campus",
+      "coords_src": "iren-fy26",
+      "status": "operational",
+      "status_src": "iren-fy26",
+      "online": "new liquid-cooled deployments 2027",
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "iren-fy26",
+      "power": [],
+      "gpus": null,
+      "anchor": null
+    },
+    {
+      "id": "iren-princegeorge",
+      "name": "Prince George",
+      "metro": "Prince George, British Columbia",
+      "country": "Canada",
+      "geo": "North America",
+      "coords": [
+        -122.7454,
+        53.9129
+      ],
+      "coords_precision": "campus",
+      "coords_src": "iren-fy26",
+      "status": "operational",
+      "status_src": "iren-fy26",
+      "online": "new liquid-cooled deployments 2027",
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "iren-fy26",
+      "power": [],
+      "gpus": null,
+      "anchor": null
+    },
+    {
+      "id": "iren-kiowa",
+      "name": "Kiowa",
+      "metro": "Kiowa, Oklahoma",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -99.0199,
+        34.9425
+      ],
+      "coords_precision": "region-centroid",
+      "coords_src": "iren-fy26",
+      "coords_note": "Placed at Kiowa County; the release does not say whether it means the county or the town of Kiowa in Pittsburg County",
+      "status": "announced",
+      "status_src": "iren-fy26",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "iren-fy26",
+      "power": [],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "SPP — Central",
+        "constraint_index": 2.6,
+        "leverage": "Some",
+        "src": "grid-headroom-map"
+      }
+    },
+    {
+      "id": "iren-bundey",
+      "name": "Bundey",
+      "metro": "Bundey, South Australia",
+      "country": "Australia",
+      "geo": "Asia Pacific",
+      "coords": [
+        139.2711,
+        -33.8872
+      ],
+      "coords_precision": "campus",
+      "coords_src": "iren-fy26",
+      "status": "announced",
+      "status_src": "iren-fy26",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "iren-fy26",
+      "power": [],
+      "gpus": null,
+      "anchor": null
+    },
+    {
+      "id": "iren-badajoz",
+      "name": "Badajoz",
+      "metro": "Badajoz",
+      "country": "Spain",
+      "geo": "Europe",
+      "coords": [
+        -6.9701,
+        38.8782
+      ],
+      "coords_precision": "metro-centroid",
+      "coords_src": "iren-fy26",
+      "status": "announced",
+      "status_src": "iren-fy26",
+      "online": null,
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "iren-fy26",
+      "power": [],
+      "gpus": null,
+      "anchor": null
+    }
+  ],
+  "pipeline": [],
+  "provider_notes": [
+    "IREN is the most site-transparent neocloud checked: its filing names every location. It publishes forward IT-capacity targets rather than a current fleet total."
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "schema_version": "1.4",
+  "as_of": "2026-09-21",
+  "provider": {
+    "id": "crusoe",
+    "name": "Crusoe",
+    "short": "Crusoe",
+    "type": "neocloud",
+    "color": "#FDE047",
+    "parent": "Crusoe Energy Systems (private)",
+    "ticker": null
+  },
+  "sources": {
+    "crusoe-abilene": {
+      "title": "Crusoe announces new 900 MW AI factory campus in Abilene for Microsoft (27 Mar 2026)",
+      "url": "https://www.crusoe.ai/resources/newsroom/crusoe-announces-new-900-mw-ai-factory-campus-in-abilene-texas-to-support-microsoft-ai-infrastructure",
+      "accessed": "2026-09-21",
+      "tier": "A",
+      "note": "New campus: 900 MW of new on-site power generation, Microsoft, first building mid-2027; full Abilene site 2.1 GW projected. Existing campus: two 100 MW buildings energised, six more reaching 1.2 GW by end of 2026."
+    },
+    "crusoe-cheyenne": {
+      "title": "Trade press coverage of Crusoe / Tallgrass Cheyenne campus (Jul 2025) and pause (2026)",
+      "url": "https://blockspace.media/insight/crusoe-data-center-capacity-wyoming-2026/",
+      "accessed": "2026-09-21",
+      "tier": "B",
+      "note": "Secondary. 1.8 GW campus announced with Tallgrass near Cheyenne; reported paused indefinitely at an undisclosed customer's request (Bloomberg)."
+    },
+    "grid-headroom-map": {
+      "title": "Proxima Grid-Headroom Map (internal)",
+      "url": "https://brianchernauskas.github.io/grid-headroom-map/",
+      "accessed": "2026-08-01",
+      "tier": "B",
+      "note": "Expert-judgment constraint index, 1-5, anchored to cited queue and capacity figures."
+    }
+  },
+  "totals": {
+    "power": []
+  },
+  "regions": [],
+  "sites": [
+    {
+      "id": "crusoe-abilene-1",
+      "name": "Abilene (campus 1)",
+      "metro": "Abilene, Texas",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -99.7476,
+        32.4464
+      ],
+      "coords_precision": "campus",
+      "coords_src": "crusoe-abilene",
+      "status": "partial",
+      "status_src": "crusoe-abilene",
+      "online": "1.2 GW by end of 2026",
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "crusoe-abilene",
+      "power": [
+        {
+          "stage": "connected",
+          "mw": 200,
+          "basis": "unspecified",
+          "src": "crusoe-abilene",
+          "as_of": "2026-03-27",
+          "note": "two 100 MW buildings energised"
+        },
+        {
+          "stage": "planned",
+          "mw": 1200,
+          "basis": "unspecified",
+          "src": "crusoe-abilene",
+          "as_of": "2026-03-27",
+          "note": "eight buildings by end of 2026"
+        }
+      ],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "ERCOT — Texas",
+        "constraint_index": 3.9,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      },
+      "notes": "Widely reported as an OpenAI / Oracle Stargate site. Crusoe's own release does not name the customer, so no anchor is recorded."
+    },
+    {
+      "id": "crusoe-abilene-2",
+      "name": "Abilene (Microsoft campus)",
+      "metro": "Abilene, Texas",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -99.7476,
+        32.4464
+      ],
+      "coords_precision": "campus",
+      "coords_src": "crusoe-abilene",
+      "status": "announced",
+      "status_src": "crusoe-abilene",
+      "online": "first building energised mid-2027",
+      "delivery": "self-built",
+      "host": null,
+      "delivery_src": "crusoe-abilene",
+      "power": [
+        {
+          "stage": "planned",
+          "mw": 900,
+          "basis": "generation",
+          "src": "crusoe-abilene",
+          "as_of": "2026-03-27",
+          "note": "on-site power generation, not IT load"
+        }
+      ],
+      "gpus": null,
+      "anchor": {
+        "name": "Microsoft",
+        "src": "crusoe-abilene"
+      },
+      "grid": {
+        "market": "ERCOT — Texas",
+        "constraint_index": 3.9,
+        "leverage": "Moderate",
+        "src": "grid-headroom-map"
+      }
+    },
+    {
+      "id": "crusoe-cheyenne",
+      "name": "Cheyenne",
+      "metro": "Cheyenne, Wyoming",
+      "country": "United States",
+      "geo": "North America",
+      "coords": [
+        -104.8202,
+        41.14
+      ],
+      "coords_precision": "campus",
+      "coords_src": "crusoe-cheyenne",
+      "status": "paused",
+      "status_src": "crusoe-cheyenne",
+      "online": null,
+      "delivery": "joint-venture",
+      "host": "Tallgrass",
+      "delivery_src": "crusoe-cheyenne",
+      "power": [
+        {
+          "stage": "potential",
+          "mw": 1800,
+          "basis": "unspecified",
+          "src": "crusoe-cheyenne",
+          "as_of": "2025-07"
+        }
+      ],
+      "gpus": null,
+      "anchor": null,
+      "grid": {
+        "market": "Non-ISO West (ex-AZ)",
+        "constraint_index": 2.3,
+        "leverage": "Low",
+        "src": "grid-headroom-map"
+      }
+    }
+  ],
+  "pipeline": []
+}
